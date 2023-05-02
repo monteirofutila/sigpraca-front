@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.dashboard');
+});
+
+Route::get('/users', function () {
+    return view('administracao.users.list_users');
+});
+
+Route::get('/workers/new', function () {
+    return view('administracao.workers.add_workers');
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
 });
