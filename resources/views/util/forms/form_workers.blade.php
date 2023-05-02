@@ -81,7 +81,7 @@
 												<div class="input-file input-file-image">
 													<img class="img-upload-preview img-circle" width="100" height="100" src="http://placehold.it/100x100" alt="preview">
 													<input type="file" class="form-control form-control-file" id="uploadImg" name="uploadImg" accept="image/*" >
-													<label for="uploadImg" class="btn btn-primary btn-round btn-lg"><i class="fa fa-file-image"></i> Carregar foto</label>
+													<label for="uploadImg" class="btn btn-warning btn-round btn-lg"><i class="fa fa-file-image"></i> Carregar foto</label>
 												</div>
 											</div>
 										</div>

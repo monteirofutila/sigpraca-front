@@ -6,7 +6,7 @@
 			<div class="container">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Usuários</h4>
+						<h4 class="page-title">Transações</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -17,13 +17,13 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Administração</a>
+								<a href="#">Finanças</a>
 							</li>
 							<li class="separator">
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Usuários</a>
+								<a href="#">Transações</a>
 							</li>
 						</ul>
 					</div>
@@ -32,10 +32,16 @@
 							<div class="card">
 								<div class="card-header">
 									<div class="d-flex align-items-center">
-										<button class="btn btn-warning btn-round ml-auto">
+										<div class="ml-auto">
+											<button class="btn btn-warning btn-border btn-round ">
 											<i class="fa fa-plus"></i>
-											Novo
-										</button>
+											Creditar
+											</button>
+											<button class="btn btn-warning btn-round">
+												<i class="fa fa-plus"></i>
+												Debitar
+											</button>
+										</div>
 									</div>
 								</div>
 								<div class="card-body">

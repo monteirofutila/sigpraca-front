@@ -4,7 +4,9 @@
 		<div class="container container-login animated fadeIn">
 			<h3 class="text-center">Entrar no Sistema</h3>
 			<div class="login-form">
-				<div class="form-group">
+				<form action="{{route('login')}}" method="post">
+					@csrf
+					<div class="form-group">
 					<label for="user_name" class="placeholder"><b>Nome de usuário</b></label>
 					<input id="user_name" name="user_name" type="text" class="form-control" required>
 				</div>
@@ -29,6 +31,7 @@
 					<span class="msg">Don't have an account yet ?</span>
 					<a href="#" id="show-signup" class="link">Sign Up</a>
 				</div> --}}
+				</form>
 			</div>
 		</div>
         @endsection

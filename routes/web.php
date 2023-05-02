@@ -13,18 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.dashboard');
-});
-
-Route::get('/users', function () {
-    return view('administracao.users.list_users');
-});
-
-Route::get('/workers/new', function () {
-    return view('administracao.workers.add_workers');
-});
-
-Route::get('/login', function () {
-    return view('auth.login');
-});
+require base_path('routes/routes/auth.php');
+require base_path('routes/routes/dashboard.php');
+require base_path('routes/routes/users.php');
+require base_path('routes/routes/workers.php');
+require base_path('routes/routes/transactions.php');
+require base_path('routes/routes/market.php');

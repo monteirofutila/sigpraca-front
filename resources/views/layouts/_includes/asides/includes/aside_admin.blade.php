@@ -41,7 +41,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="starter-template.html">
+    <a href="{{route('transactions.index')}}">
         <i class="fas fa-money-bill-alt"></i>
         <p>Transações</p>
     </a>
@@ -60,20 +60,20 @@
 </li>
 
 <li class="nav-item">
-    <a data-toggle="collapse" href="#messages-app-nav">
+    <a data-toggle="collapse" href="#workers">
         <i class="fas fa-user-tie"></i>
         <p>Trabalhadores</p>
         <span class="caret"></span>
     </a>
-    <div class="collapse" id="messages-app-nav">
+    <div class="collapse" id="workers">
         <ul class="nav nav-collapse">
             <li>
-                <a href="messages.html">
+                <a href="{{route('workers.create')}}">
                     <span class="sub-item">Novo</span>
                 </a>
             </li>
             <li>
-                <a href="conversations.html">
+                <a href="{{route('workers.index')}}">
                     <span class="sub-item">Lista</span>
                 </a>
             </li>
@@ -81,20 +81,20 @@
     </div>
 </li>
 <li class="nav-item">
-    <a data-toggle="collapse" href="#email-nav">
+    <a data-toggle="collapse" href="#users">
         <i class="fas fa-user-friends"></i>
         <p>Usuários</p>
         <span class="caret"></span>
     </a>
-    <div class="collapse" id="email-nav">
+    <div class="collapse" id="users">
         <ul class="nav nav-collapse">
             <li>
-                <a href="email-inbox.html">
+                <a href="{{route('users.create')}}">
                     <span class="sub-item">Novo</span>
                 </a>
             </li>
             <li>
-                <a href="email-compose.html">
+                <a href="{{route('users.index')}}">
                     <span class="sub-item">Lista</span>
                 </a>
             </li>

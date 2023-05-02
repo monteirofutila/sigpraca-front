@@ -32,7 +32,7 @@
 							<div class="card">
 								<div class="card-header">
 									<div class="d-flex align-items-center">
-										<button class="btn btn-primary btn-round ml-auto">
+										<button class="btn btn-warning btn-round ml-auto">
 											<i class="fa fa-plus"></i>
 											Novo
 										</button>
