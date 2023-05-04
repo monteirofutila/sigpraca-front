@@ -40,7 +40,7 @@
 								</div>
 								<div class="card-body">
 									<!-- Modal -->
-									@include('util.tables.table_users')
+									@include('users.tables.table_list_users')
 								</div>
 							</div>
 						</div>

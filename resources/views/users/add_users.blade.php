@@ -32,7 +32,7 @@
                         <div class="card-header">
                             <div class="card-title">Cadastrar novo usuário</div>
                         </div>
-                        @include('util.forms.form_users')
+                        @include('users.forms.form_add_users')
                     </div>
                 </div>
             </div>

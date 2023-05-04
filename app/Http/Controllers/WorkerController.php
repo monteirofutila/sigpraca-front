@@ -17,7 +17,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        return view('administracao.workers.list_workers');
+        return view('workers.list_workers');
     }
 
     /**
@@ -25,7 +25,7 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        return view('administracao.workers.add_workers');
+        return view('workers.add_workers');
     }
 
     /**

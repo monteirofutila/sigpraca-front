@@ -15,17 +15,17 @@ class TransactionController extends Controller
 
     public function index()
     {
-        return view('financas.transactions.list_transactions');
+        return view('transactions.list_transactions');
     }
 
     public function addCredit()
     {
-        return view('financas.credits.add_credits');
+        return view('credits.add_credits');
     }
 
     public function addDebit()
     {
-        return view('financas.debits.add_debits');
+        return view('debits.add_debits');
     }
 
 }

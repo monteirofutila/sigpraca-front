@@ -22,8 +22,7 @@
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <input type="email" class="form-control" id="email" placeholder="Email" required>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+
             </div>
         </div>
         <div class="form-group form-show-validation row">

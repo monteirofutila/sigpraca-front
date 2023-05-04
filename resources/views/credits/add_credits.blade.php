@@ -1,11 +1,11 @@
 @extends('layouts.template')
 
-@section('titulo', 'Debitar saldo')
+@section('titulo', 'Novo usuário')
 @section('content')
 			<div class="container">
 				<div class="page-inner">
 					<div class="page-header">
-						<h4 class="page-title">Débitos</h4>
+						<h4 class="page-title">Créditos</h4>
 						<ul class="breadcrumbs">
 							<li class="nav-home">
 								<a href="#">
@@ -28,7 +28,7 @@
 								<i class="flaticon-right-arrow"></i>
 							</li>
 							<li class="nav-item">
-								<a href="#">Débitos</a>
+								<a href="#">Créditos</a>
 							</li>
 						</ul>
 					</div>
@@ -36,9 +36,9 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="card-title">Debitar saldo diário</div>
+									<div class="card-title">Adicionar crédito</div>
 								</div>
-								@include('financas.debits.forms.form_add_debits')
+								@include('credits.forms.form_add_credits')
 							</div>
 						</div>
 					</div>

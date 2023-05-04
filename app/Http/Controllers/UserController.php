@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('administracao.users.list_users');
+        return view('users.list_users');
     }
 
     /**
@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('administracao.users.add_users');
+        return view('users.add_users');
     }
 
     /**
