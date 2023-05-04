@@ -33,14 +33,14 @@
 								<div class="card-header">
 									<div class="d-flex align-items-center">
 										<div class="ml-auto">
-											<button class="btn btn-warning btn-border btn-round ">
-											<i class="fa fa-plus"></i>
-											Creditar
-											</button>
-											<button class="btn btn-warning btn-round">
+											<a href="{{route('transactions.credit')}}" class="btn btn-warning btn-border btn-round ">
+												<i class="fa fa-plus"></i>
+												Creditar
+											</a>
+											<a href="{{route('transactions.debit')}}" class="btn btn-warning btn-round">
 												<i class="fa fa-plus"></i>
 												Debitar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>

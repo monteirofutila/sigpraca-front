@@ -12,43 +12,20 @@ class TransactionController extends Controller
         $this->middleware(EnsureTokenIsValid::class);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         return view('financas.transactions.list_transactions');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function addCredit()
     {
-        //
+        return view('financas.credits.add_credits');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function addDebit()
     {
-        //
+        return view('financas.debits.add_debits');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

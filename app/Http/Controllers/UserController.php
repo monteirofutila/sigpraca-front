@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('administracao.users.list_users');
+        return view('administracao.users.add_users');
     }
 
     /**

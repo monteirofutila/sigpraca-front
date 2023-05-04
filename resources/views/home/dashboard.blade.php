@@ -11,11 +11,11 @@
                         <h5 class="text-white op-7 mb-2">Sistema de gerenciamento de praças</h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <a href="#" class="btn btn-white btn-border btn-round mr-2">
+                        <a href="{{route('transactions.credit')}}" class="btn btn-white btn-border btn-round mr-2">
                             <i class="fa fa-plus"></i>
                             Creditar
                         </a>
-                        <a href="#" class="btn btn-secondary btn-round">
+                        <a href="{{route('transactions.debit')}}" class="btn btn-secondary btn-round">
                             <i class="fa fa-plus"></i> 
                             Debitar
                         </a>

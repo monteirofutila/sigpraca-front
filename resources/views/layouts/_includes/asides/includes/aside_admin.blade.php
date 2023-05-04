@@ -1,5 +1,5 @@
 <li class="nav-item active">
-    <a data-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+    <a href="{{route('home')}}">
         <i class="fas fa-home"></i>
         <p>Home</p>
     </a>

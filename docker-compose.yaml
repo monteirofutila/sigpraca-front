@@ -31,6 +31,8 @@ services:
   # redis
   redis:
     image: redis:latest
+    volumes:
+    - ./.docker/redis/:/data
     networks:
       - laravel
 
