@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Services\WorkerService;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
 {
-    public function __construct()
+    public function __construct(protected WorkerService $service)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -17,7 +18,8 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        return view('workers.list_workers');
+        $workers = $this->service->getAll();
+        return view('workers.list_workers', compact('workers'));
     }
 
     /**

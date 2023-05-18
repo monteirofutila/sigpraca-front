@@ -7,12 +7,11 @@ use App\Http\Requests\StoreUserRequest;
 class CreateUserDTO
 {
     public function __construct(
+        public string $name,
         public string $user_name,
-        public string $first_name,
-        public string $last_name,
         public string $email,
         public string $password,
-        public string $photo,
+        public $photo,
         public string $phone_mobile,
         public string $phone_other,
         public string $address_country,
@@ -35,9 +34,8 @@ class CreateUserDTO
     public static function makeFromRequest(StoreUserRequest $request): self
     {
         return new self(
+            $request->name,
             $request->user_name,
-            $request->first_name,
-            $request->last_name,
             $request->email,
             $request->password,
             $request->photo,

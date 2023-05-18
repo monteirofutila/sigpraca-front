@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 
 class UserController extends Controller
 {
-    public function __construct()
+    public function __construct(protected UserService $service)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -17,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.list_users');
+        $users = $this->service->getAll();
+        return view('users.list_users', compact('users'));
     }
 
     /**

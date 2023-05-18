@@ -18,7 +18,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        session(['api_token' => true]);
+        session([
+            'api_token' => true,
+            'access_token' => '1|oWpPRUI88FMC1QbrOD5my6VR1axVuihjRdWPMUjj'
+        ]);
+
         return redirect()->route('home');
     }
 

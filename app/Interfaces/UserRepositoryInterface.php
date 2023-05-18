@@ -6,13 +6,13 @@ use Illuminate\Support\Collection;
 
 interface UserRepositoryInterface
 {
-    public function findById(string $id): ?object;
+    public function findById(string $id);
 
-    public function getAll(): Collection;
+    public function getAll(): array;
 
-    public function new(array $data): object;
+    public function new(array $data);
 
-    public function update(string $id, array $data): ?object;
+    public function update(string $id, array $data);
 
-    public function delete(string $id): bool;
+    public function delete(string $id);
 }
