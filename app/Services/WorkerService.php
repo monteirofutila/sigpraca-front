@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Workers\CreateWorkerDTO;
 use App\Repositories\WorkerRepository;
 
 
@@ -20,6 +21,25 @@ class WorkerService
 
         if ($status === 200) {
             return $data;
+        } elseif ($status === 500) {
+            abort(500);
+        }
+
+    }
+
+    public function new(CreateWorkerDTO $dto): ?object
+    {
+        $response = $this->repository->new($dto->toArray());
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200 || $status === 422) {
+            return $data;
+        } elseif ($status === 500) {
+            abort(500);
+        } elseif ($status === 404) {
+            abort(404);
         } else {
             return null;
         }

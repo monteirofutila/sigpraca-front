@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Users\CreateUserDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 
@@ -33,9 +35,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
+        $dto = CreateUserDTO::makeFromRequest($request);
+        $user = $this->service->new($dto);
 
+        if (isset($user->errors)) {
+            return redirect()->back()->withErrors($user->errors);
+        }
+
+        toast('Item criado com sucesso!', 'success');
+        return redirect()->route('users.create');
     }
 
     /**

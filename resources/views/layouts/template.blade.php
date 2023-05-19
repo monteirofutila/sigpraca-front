@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,9 +25,12 @@
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+	@stack('css')
 </head>
 <body>
+
 	<div class="wrapper fullheight-side sidebar_minimize">
+		@include('sweetalert::alert')
 		<!--Menu-->
 		@include('layouts._includes.header')
 

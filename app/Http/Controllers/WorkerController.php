@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Workers\CreateWorkerDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Requests\StoreWorkerRequest;
 use App\Services\WorkerService;
 use Illuminate\Http\Request;
 
@@ -33,9 +35,19 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreWorkerRequest $request)
     {
         //
+        $dto = CreateWorkerDTO::makeFromRequest($request);
+        $worker = $this->service->new($dto);
+
+        if (isset($worker->errors)) {
+            return redirect()->back()->withErrors($worker->errors);
+        }
+
+        toast('Item criado com sucesso!', 'success');
+        return redirect()->route('workers.create');
+        
     }
 
     /**

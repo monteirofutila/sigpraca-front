@@ -1,26 +1,34 @@
-<form id="exampleValidation" action="" method="POST">
+<form id="exampleValidation" action="{{ route('workers.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card-body">
         <div class="form-group form-show-validation row">
             <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nome completo <span
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Nome completo"
-                    required>
+                <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" placeholder="Nome completo" required>
+                @error('name')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
             <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Email</label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="email" class="form-control" id="email" placeholder="Email">
+                <input type="email" class="form-control" id="email" name="email" value="{{old('email')}}" placeholder="Email">
+                @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
             <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Telefone <span
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="phone_mobile" name="phone_mobile" placeholder="Telefone"
+                <input type="tel" class="form-control" id="phone_mobile" name="phone_mobile" value="{{old('phone_mobile')}}" placeholder="Telefone"
                     required>
+                @error('phone_mobile')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
 
             </div>
         </div>
@@ -38,46 +46,63 @@
                     <input type="radio" value="F" id="female" name="gender" class="custom-control-input">
                     <label class="custom-control-label" for="female">Feminino</label>
                 </div>
+                @error('gender')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
-            <label for="birth" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nascimento <span
-                    class="required-label">*</span></label>
+            <label for="date_birth" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nascimento </label>
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <div class="input-group">
-                    <input type="date" class="form-control" id="birth" name="date_birth" required>
+                    <input type="date" class="form-control" id="date_birth" name="date_birth" value="{{old('date_birth')}}" required>
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-calendar-check"></i>
                         </span>
                     </div>
                 </div>
+                @error('date_birth')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
             <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Bilhete <span
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="text" class="form-control" id="bi" name="bi" placeholder="Bilhete de identidade" required>
+                <input type="text" class="form-control" id="bi" name="bi" value="{{old('bi')}}" placeholder="Bilhete de identidade" required>
+                @error('bi')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="separator-solid"></div>
         <div class="form-group form-show-validation row">
             <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">País</label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_country" name="address_country" placeholder="País">
+                <input type="tel" class="form-control" id="address_country" value="{{old('address_country')}}" name="address_country" placeholder="País">
+                @error('address_country')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
             <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Cidade</label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_city" name="address_city" placeholder="Cidade">
+                <input type="tel" class="form-control" id="address_city" value="{{old('address_city')}}" name="address_city" placeholder="Cidade">
+                @error('address_city')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="form-group form-show-validation row">
             <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Bairro</label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_street" name="address_street" placeholder="Bairro">
+                <input type="tel" class="form-control" id="address_street" value="{{old('address_street')}}" name="address_street" placeholder="Bairro">
+                @error('address_street')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
         </div>
         <div class="separator-solid"></div>
@@ -87,8 +112,11 @@
                 <div class="input-file input-file-image">
                     <img class="img-upload-preview img-circle" width="100" height="100"
                         src="http://placehold.it/100x100" alt="preview">
-                    <input type="file" class="form-control form-control-file" id="uploadImg" name="uploadImg"
+                    <input type="file" class="form-control form-control-file" id="uploadImg" name="photo" value="{{old('photo')}}"
                         accept="image/*">
+                    @error('photo')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                     <label for="uploadImg" class="btn btn-warning btn-round btn-lg"><i class="fa fa-file-image"></i>
                         Carregar foto</label>
                 </div>

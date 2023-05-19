@@ -26,9 +26,22 @@ class UserService
         }
 
     }
-
     public function new(CreateUserDTO $dto): ?object
     {
-        return $this->repository->new($dto->toArray());
+        $response = $this->repository->new($dto->toArray());
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200 || $status === 422) {
+            return $data;
+        } elseif ($status === 500) {
+            abort(500);
+        } elseif ($status === 404) {
+            abort(404);
+        } else {
+            return null;
+        }
+
     }
 }
