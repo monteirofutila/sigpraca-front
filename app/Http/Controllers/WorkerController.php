@@ -42,12 +42,13 @@ class WorkerController extends Controller
         $worker = $this->service->new($dto);
 
         if (isset($worker->errors)) {
+            toast('Não foi possivel adicionar o vendedor!', 'error');
             return redirect()->back()->withErrors($worker->errors);
         }
 
         toast('Item criado com sucesso!', 'success');
         return redirect()->route('workers.create');
-        
+
     }
 
     /**

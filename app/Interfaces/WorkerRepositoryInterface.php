@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface UserRepositoryInterface
+interface WorkerRepositoryInterface
 {
     public function findById(string $id): array;
 

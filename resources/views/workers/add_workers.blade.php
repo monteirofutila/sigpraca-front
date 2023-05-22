@@ -1,11 +1,11 @@
 @extends('layouts.template')
 
-@section('titulo', 'Novo usuário')
+@section('titulo', 'Vendedor - Novo item')
 @section('content')
 <div class="container">
     <div class="page-inner">
         <div class="page-header">
-            <h4 class="page-title">Trabalhadores</h4>
+            <h4 class="page-title">Vendedores</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
                     <a href="#">
@@ -22,7 +22,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Trabalhadores</a>
+                    <a href="#">Vendedores</a>
                 </li>
             </ul>
         </div>
@@ -30,7 +30,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Cadastrar novo trabalhador</div>
+                        <div class="card-title">Novo item - Vendedor</div>
                     </div>
                     @include('workers.forms.form_add_workers')
                 </div>

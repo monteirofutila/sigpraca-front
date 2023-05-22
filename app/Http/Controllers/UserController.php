@@ -7,10 +7,11 @@ use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Services\RoleService;
 
 class UserController extends Controller
 {
-    public function __construct(protected UserService $service)
+    public function __construct(protected UserService $service, protected RoleService $roleService)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -29,7 +30,8 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('users.add_users');
+        $roles = $this->roleService->getAll();
+        return view('users.add_users', compact('roles'));
     }
 
     /**
@@ -41,6 +43,7 @@ class UserController extends Controller
         $user = $this->service->new($dto);
 
         if (isset($user->errors)) {
+            toast('Não foi possivel adicionar o usuário!', 'error');
             return redirect()->back()->withErrors($user->errors);
         }
 

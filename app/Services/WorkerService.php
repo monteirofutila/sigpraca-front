@@ -21,8 +21,12 @@ class WorkerService
 
         if ($status === 200) {
             return $data;
-        } elseif ($status === 500) {
+        } else if ($status === 401) {
+            abort(401);
+        } else if ($status === 500) {
             abort(500);
+        } else {
+            return null;
         }
 
     }

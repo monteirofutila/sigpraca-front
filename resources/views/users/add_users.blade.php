@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Novo usuário')
+@section('titulo', 'Usuário - Novo item')
 @section('content')
     <div class="container">
         <div class="page-inner">
@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Cadastrar novo usuário</div>
+                            <div class="card-title">Novo item - Usuário</div>
                         </div>
                         @include('users.forms.form_add_users')
                     </div>

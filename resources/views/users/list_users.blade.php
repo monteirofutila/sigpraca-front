@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Lista usuários')
+@section('titulo', 'Usuários')
 @section('content')
 
 <div class="container">

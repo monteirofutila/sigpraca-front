@@ -21,6 +21,10 @@ class UserService
 
         if ($status === 200) {
             return $data;
+        } else if ($status === 401) {
+            abort(401);
+        } else if ($status === 500) {
+            abort(500);
         } else {
             return null;
         }
@@ -35,10 +39,10 @@ class UserService
 
         if ($status === 200 || $status === 422) {
             return $data;
-        } elseif ($status === 500) {
+        } else if ($status === 401) {
+            abort(401);
+        } else if ($status === 500) {
             abort(500);
-        } elseif ($status === 404) {
-            abort(404);
         } else {
             return null;
         }

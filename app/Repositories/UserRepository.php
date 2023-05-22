@@ -3,22 +3,28 @@
 namespace App\Repositories;
 
 use App\Interfaces\UserRepositoryInterface;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class UserRepository implements UserRepositoryInterface
 {
     protected $http;
     public function __construct()
     {
-        $token = "1|oWpPRUI88FMC1QbrOD5my6VR1axVuihjRdWPMUjj"; // Session::get('access_token');
+        $token = session('access_token');
         $this->http = Http::acceptJson()->withToken($token);
     }
 
     public function findById(string $id): array
     {
-        return $this->http->get("/api/users/$id");
+        $response = $this->http->get(config('app.api.base_url') . "/users/$id");
+
+        $statusCode = $response->status();
+        $responseData = $response->object();
+
+        return [
+            'status' => $statusCode,
+            'data' => $responseData
+        ];
     }
 
     public function getAll(): array
@@ -59,11 +65,27 @@ class UserRepository implements UserRepositoryInterface
 
     public function update(string $id, array $data): array
     {
-        return $this->http->put("/api/users/$id", $data);
+        $response = $this->http->put(config('app.api.base_url') . "/users/$id", $data);
+
+        $statusCode = $response->status();
+        $responseData = $response->object();
+
+        return [
+            'status' => $statusCode,
+            'data' => $responseData
+        ];
     }
 
     public function delete(string $id): array
     {
-        return $this->http->delete("/api/users/$id");
+        $response = $this->http->delete(config('app.api.base_url') . "/users/$id");
+
+        $statusCode = $response->status();
+        $responseData = $response->object();
+
+        return [
+            'status' => $statusCode,
+            'data' => $responseData
+        ];
     }
 }

@@ -16,7 +16,7 @@ class EnsureTokenIsValid
     public function handle(Request $request, Closure $next): Response
     {
         //se não existe token na sessão ou se seu valor for null redireciona para rota login
-        $token = session('api_token');
+        $token = session('access_token');
         if (!$token || $token == null) {
             return redirect()->route('login');
         }

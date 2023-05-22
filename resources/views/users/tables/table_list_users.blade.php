@@ -5,7 +5,7 @@
                 <th>ID</th>
                 <th>Nome completo</th>
                 <th>Nome de usuário</th>
-                <th>Cago</th>
+                <th>Função</th>
                 <th>Email</th>
                 <th>Telefone</th>
                <th style="width: 10%">Ação</th>
@@ -16,7 +16,7 @@
 				<th>ID</th>
                 <th>Nome completo</th>
                 <th>Nome de usuário</th>
-                <th>Cargo</th>
+                <th>Função</th>
                 <th>Email</th>
                 <th>Telefone</th>
                 <th style="width: 10%">Ação</th>
@@ -28,7 +28,7 @@
 					<td>{{ $data->id }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->user_name }}</td>
-                    <td>{{ '' }}</td>
+                    <td>{{ $data->roles[0] }}</td>
                     <td>{{ $data->email }}</td>
                     <td>{{ $data->phone_mobile }}</td>
                     <td>

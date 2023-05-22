@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function __construct()
+    public function __construct(protected TransactionService $service, )
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -15,7 +16,8 @@ class TransactionController extends Controller
 
     public function index()
     {
-        return view('transactions.list_transactions');
+        $transactions = $this->service->getAll();
+        return view('transactions.list_transactions', compact('transactions'));
     }
 
     public function addCredit()

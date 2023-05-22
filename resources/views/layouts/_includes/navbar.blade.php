@@ -28,7 +28,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Personalização</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Sair</a>
+                            <a class="dropdown-item" href="{{route('logout')}}">Sair</a>
                         </li>
                     </div>
                 </ul>

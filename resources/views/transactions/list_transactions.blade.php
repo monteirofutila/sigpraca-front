@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Lista usuários')
+@section('titulo', 'Transações')
 @section('content')
 
 <div class="container">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Modal -->
-                        @include('tables.table_list_transactions')
+                        @include('transactions.tables.table_list_transactions')
                     </div>
                 </div>
             </div>
