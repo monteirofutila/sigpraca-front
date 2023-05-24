@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\AuthService;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +17,9 @@ class EnsureTokenIsValid
     public function handle(Request $request, Closure $next): Response
     {
         //se não existe token na sessão ou se seu valor for null redireciona para rota login
-        $token = session('access_token');
-        if (!$token || $token == null) {
+        $token = session('token');
+
+        if (!$token || $token === null) {
             return redirect()->route('login');
         }
 

@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Http;
 class AuthRepository implements AuthRepositoryInterface
 {
     protected $http;
+
     public function __construct()
     {
-        $token = session('access_token');
-        $this->http = Http::acceptJson()->withToken($token);
+        $this->http = Http::acceptJson();
     }
     public function login(array $data): array
     {
@@ -25,19 +25,25 @@ class AuthRepository implements AuthRepositoryInterface
             'data' => $responseData
         ];
     }
+    public function me(): array
+    {
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/auth/me");
+
+        $statusCode = $response->status();
+        $responseData = $response->object();
+
+        return [
+            'status' => $statusCode,
+            'data' => $responseData
+        ];
+    }
     public function logout(): array
     {
-        $response = $this->http->post(config('app.api.base_url') . "/auth/logout");
-
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/auth/logout");
         $statusCode = $response->status();
 
         return [
             'status' => $statusCode
         ];
     }
-
-    public function getAll(){
-
-    }
-
 }

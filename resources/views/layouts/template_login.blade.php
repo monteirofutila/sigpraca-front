@@ -24,6 +24,7 @@
 
 </head>
 <body class="login">
+	@include('sweetalert::alert')
 	<div class="wrapper wrapper-login">
 
 		

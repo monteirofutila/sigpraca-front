@@ -10,12 +10,11 @@ class TransactionRepository implements TransactionRepositoryInterface
     protected $http;
     public function __construct()
     {
-        $token = session('access_token');
-        $this->http = Http::acceptJson()->withToken($token);
+        $this->http = Http::acceptJson();
     }
     public function getAll(): array
     {
-        $response = $this->http->get(config('app.api.base_url') . "/transactions");
+        $response = $this->http->withToken(session('token'))->get(config('app.api.base_url') . "/transactions");
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -25,5 +24,4 @@ class TransactionRepository implements TransactionRepositoryInterface
             'data' => $responseData
         ];
     }
-
 }

@@ -10,13 +10,12 @@ class WorkerRepository implements WorkerRepositoryInterface
     protected $http;
     public function __construct()
     {
-        $token = session('access_token');
-        $this->http = Http::acceptJson()->withToken($token);
+        $this->http = Http::acceptJson();
     }
 
     public function findById(string $id): array
     {
-        $response = $this->http->get(config('app.api.base_url') . "/workers/$id");
+        $response = $this->http->withToken(session('token'))->get(config('app.api.base_url') . "/workers/$id");
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -29,7 +28,7 @@ class WorkerRepository implements WorkerRepositoryInterface
 
     public function getAll(): array
     {
-        $response = $this->http->get(config('app.api.base_url') . "/workers");
+        $response = $this->http->withToken(session('token'))->get(config('app.api.base_url') . "/workers");
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -51,7 +50,7 @@ class WorkerRepository implements WorkerRepositoryInterface
             );
         }
 
-        $response = $this->http->post(config('app.api.base_url') . "/workers", $data);
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/workers", $data);
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -60,12 +59,11 @@ class WorkerRepository implements WorkerRepositoryInterface
             'status' => $statusCode,
             'data' => $responseData
         ];
-
     }
 
     public function update(string $id, array $data): array
     {
-        $response = $this->http->put(config('app.api.base_url') . "/users/$id", $data);
+        $response = $this->http->withToken(session('token'))->put(config('app.api.base_url') . "/users/$id", $data);
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -78,7 +76,7 @@ class WorkerRepository implements WorkerRepositoryInterface
 
     public function delete(string $id): array
     {
-        $response = $this->http->delete(config('app.api.base_url') . "/users/$id");
+        $response = $this->http->withToken(session('token'))->delete(config('app.api.base_url') . "/users/$id");
 
         $statusCode = $response->status();
         $responseData = $response->object();

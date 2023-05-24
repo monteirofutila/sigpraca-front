@@ -7,6 +7,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\LoginRequest;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -22,14 +23,22 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $dto = LoginDTO::makeFromRequest($request);
+        $request->session()->regenerate();
         $response = $this->service->login($dto);
 
-        if (isset($response->errors)) {
+        if (!$response) {
             toast('Nome de usuário ou palavra-passe errado(a)', 'error');
+            return redirect()->back();
+        }
+
+        if (isset($response->errors)) {
             return redirect()->back()->withErrors($response->errors);
         }
 
-        return redirect()->route('home');
+        if (isset($response->token)) {
+            session(['token' => $response->token]);
+            return redirect()->route('home');
+        }
     }
 
     public function logout(Request $request)
@@ -41,9 +50,6 @@ class AuthController extends Controller
             return redirect()->back();
         }
 
-        session()->flush();
-
         return redirect()->route('login.show');
     }
-
 }
