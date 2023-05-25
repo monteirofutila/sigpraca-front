@@ -25,9 +25,12 @@ class TransactionRepository implements TransactionRepositoryInterface
         ];
     }
 
-    public function addCredit(string $workerID): array
+    public function addCredit(string $workerID, string $password): array
     {
-        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/workers/$workerID/transactions/credit");
+        $response = $this->http->withToken(session('token'))
+        ->post(config('app.api.base_url') . "/workers/$workerID/transactions/credit", [
+            'password' => $password
+        ]);
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -38,9 +41,12 @@ class TransactionRepository implements TransactionRepositoryInterface
         ];
     }
 
-    public function addDebit(string $workerID): array
+    public function addDebit(string $workerID, string $password): array
     {
-        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/workers/$workerID/transactions/debit");
+        $response = $this->http->withToken(session('token'))
+        ->post(config('app.api.base_url') . "/workers/$workerID/transactions/debit", [
+            'password' => $password
+        ]);
 
         $statusCode = $response->status();
         $responseData = $response->object();

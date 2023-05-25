@@ -28,15 +28,17 @@ class TransactionService
         }
     }
 
-    public function addCredit(CreditDebitDTO $dto): ?object
+    public function addCredit(CreditDebitDTO $dto): object|null|bool
     {
-        $response = $this->repository->addCredit($dto->worker_id);
+        $response = $this->repository->addCredit($dto->worker_id, $dto->password);
 
         $status = $response['status'];
         $data = $response['data'];
 
         if ($status === 200 || $status === 422 || $status === 201) {
             return $data;
+        } else if ($status === 400) {
+            return false;
         } else if ($status === 401) {
             abort(401);
         } else if ($status === 500) {
@@ -46,15 +48,17 @@ class TransactionService
         }
     }
 
-    public function addDebit(CreditDebitDTO $dto): ?object
+    public function addDebit(CreditDebitDTO $dto): object|null|bool
     {
-        $response = $this->repository->addDebit($dto->worker_id);
+        $response = $this->repository->addDebit($dto->worker_id, $dto->password);
 
         $status = $response['status'];
         $data = $response['data'];
 
         if ($status === 200 || $status === 422 || $status === 201) {
             return $data;
+        } else if ($status === 400) {
+            return false;
         } else if ($status === 401) {
             abort(401);
         } else if ($status === 500) {

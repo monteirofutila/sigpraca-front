@@ -6,7 +6,7 @@
 		<div class="form-group form-show-validation row d-flex justify-content-center">
 			<div class="col-lg-4 col-md-9 col-sm-8">
 				<label for="value" class="placeholder">Montante</label>
-				<input type="text" class="form-control" id="value" value="{{$data->value_credit}}" name="value" disabled>
+				<input type="text" class="form-control" id="value" value="{{ number_format($data->value_credit, 2, ',', '.') }}" name="value" disabled>
 			</div>
 		</div>
 		<div class="form-group form-show-validation row d-flex justify-content-center">
@@ -24,7 +24,7 @@
 		<div class="form-group form-show-validation row d-flex justify-content-center">
 			<div class="col-lg-4 col-md-9 col-sm-8">
 				<label for="balance" class="placeholder">Saldo dispónivel</label>
-				<input type="text" class="form-control" id="balance" value="{{$data->balance}}" name="balance" disabled>
+				<input type="text" class="form-control" id="balance" value="{{ number_format($data->balance, 2, ',', '.') }}" name="balance" disabled>
 			</div>
 		</div>
 	</div>

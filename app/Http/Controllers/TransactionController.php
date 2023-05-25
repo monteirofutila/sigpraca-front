@@ -45,7 +45,7 @@ class TransactionController extends Controller
             'password' => $dto->password,
             'balance' => $account->data->balance,
             'name' => $account->data->worker->name,
-            'value_credit' => null,
+            'value_credit' => $account->data->category->credit,
         ];
 
         return view('credits.confirmation_credits', compact('data'));
@@ -61,7 +61,7 @@ class TransactionController extends Controller
             'password' => $dto->password,
             'balance' => $account->data->balance,
             'name' => $account->data->worker->name,
-            'value_debit' => null,
+            'value_debit' => $account->data->category->debit,
         ];
 
         return view('debits.confirmation_debits', compact('data'));
@@ -72,9 +72,14 @@ class TransactionController extends Controller
         $dto = CreditDebitDTO::makeFromRequest($request);
         $transaction = $this->transactionService->addCredit($dto);
 
+        if (!$transaction) {
+            toast('Password inválida', 'error');
+            return redirect()->route('transactions.credit');
+        }
+
         if ($transaction === null) {
             toast('Falha ao adicionar crédito!', 'error');
-            return redirect()->back();
+            return redirect()->route('transactions.credit');
         }
 
         if (isset($transaction->errors)) {
@@ -91,9 +96,14 @@ class TransactionController extends Controller
         $dto = CreditDebitDTO::makeFromRequest($request);
         $transaction = $this->transactionService->addDebit($dto);
 
+        if (!$transaction) {
+            toast('Password inválida', 'error');
+            return redirect()->route('transactions.debit');
+        }
+
         if ($transaction === null) {
-            toast('Falha ao adicionar débito!', 'error');
-            return redirect()->back();
+            toast('Falha ao adicionar crédito!', 'error');
+            return redirect()->route('transactions.debit');
         }
 
         if (isset($transaction->errors)) {
