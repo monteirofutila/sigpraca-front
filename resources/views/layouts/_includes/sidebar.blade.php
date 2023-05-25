@@ -4,13 +4,13 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="{{asset('assets/img/avatar_user_default.png')}}" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{session('user')->photo}}" alt="..." class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            Hizrian
-                            <span class="user-level">Administrator</span>
+                            {{session('user')->name}}
+                            <span class="user-level">{{session('user')->roles[0]}}</span>
                             <span class="caret"></span>
                         </span>
                     </a>

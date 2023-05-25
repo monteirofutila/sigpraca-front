@@ -5,6 +5,9 @@
                 <th>ID</th>
                 <th>Descrição</th>
                 <th>Montante</th>
+                <th>Vendedor</th>
+                <th>Saldo anterior</th>
+                <th>Saldo posterior</th>
                 <th>Data</th>
                 <th style="width: 10%">Ação</th>
             </tr>
@@ -14,6 +17,9 @@
                 <th>ID</th>
                 <th>Descrição</th>
                 <th>Montante</th>
+                <th>Vendedor</th>
+                <th>Saldo anterior</th>
+                <th>Saldo posterior</th>
                 <th>Data</th>
                 <th style="width: 10%">Ação</th>
             </tr>
@@ -25,6 +31,9 @@
                     <td>{{ $value->description }}</td>
                     <td>{{ number_format($value->value, 2, ',', '.') }}
                     </td>
+                    <td>{{ $value->account->worker->name }}</td>
+                    <td>{{ $value->previous_balance }}</td>
+                    <td>{{ $value->current_balance }}</td>
                     <td>{{ date('d/m/Y H:m:s', strtotime($value->created_at)) }}
                     </td>
                     <td>

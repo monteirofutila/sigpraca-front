@@ -37,6 +37,7 @@ class AuthController extends Controller
 
         if (isset($response->token)) {
             session(['token' => $response->token]);
+            session(['user' => $response->user]);
             return redirect()->route('home');
         }
     }

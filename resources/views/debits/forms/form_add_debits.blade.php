@@ -1,4 +1,4 @@
-<form id="exampleValidation" action="" method="POST">
+<form id="exampleValidation" action="{{route('transactions.debit.store')}}" method="POST">
     @csrf
     <div class="card-body">
         <div class="form-group form-show-validation row py-4">
@@ -8,9 +8,9 @@
         </div>
         <div class="form-group form-show-validation row d-flex justify-content-center">
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <label for="identificador" class="placeholder">Identificador <span
+                <label for="workerID" class="placeholder">Identificador <span
                         class="required-label">*</span></label>
-                <input type="text" class="form-control" id="identificador" name="identificador"
+                <input type="text" class="form-control" id="workerID" name="workerID"
                     placeholder="Código do identificador" required>
             </div>
 

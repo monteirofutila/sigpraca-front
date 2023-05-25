@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Services\StatistService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
 
-    public function __construct()
+    public function __construct(protected StatistService $service)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -18,7 +19,8 @@ class DashboardController extends Controller
      */
     public function home()
     {
-        return view('home.dashboard');
+        $stast = $this->service->stast();
+        return view('home.dashboard', compact('stast'));
     }
 
     /**

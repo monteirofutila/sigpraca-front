@@ -2,74 +2,79 @@
 
 @section('titulo', 'Dashboard')
 @section('content')
-    <div class="container">
-        <div class="panel-header bg-warning-gradient">
-            <div class="page-inner py-5">
-                <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-                    <div>
-                        <h2 class="text-white pb-2 fw-bold">Dashboard</h2>
-                        <h5 class="text-white op-7 mb-2">Sistema de gerenciamento de praças</h5>
-                    </div>
-                    <div class="ml-md-auto py-2 py-md-0">
-                        <a href="{{route('transactions.credit')}}" class="btn btn-white btn-border btn-round mr-2">
-                            <i class="fa fa-plus"></i>
-                            Creditar
-                        </a>
-                        <a href="{{route('transactions.debit')}}" class="btn btn-secondary btn-round">
-                            <i class="fa fa-plus"></i> 
-                            Debitar
-                        </a>
-                    </div>
+<div class="container">
+    <div class="panel-header bg-warning-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">Dashboard</h2>
+                    <h5 class="text-white op-7 mb-2">Sistema de gerenciamento de praças</h5>
+                </div>
+                <div class="ml-md-auto py-2 py-md-0">
+                    <a href="{{ route('transactions.credit') }}"
+                        class="btn btn-white btn-border btn-round mr-2">
+                        <i class="fa fa-plus"></i>
+                        Creditar
+                    </a>
+                    <a href="{{ route('transactions.debit') }}" class="btn btn-secondary btn-round">
+                        <i class="fa fa-plus"></i>
+                        Debitar
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="page-inner mt--5">
-            <div class="row mt--2">
-                <div class="col-md-7">
-                    <div class="card full-height">
-                        <div class="card-body">
-                            <div class="card-title">Estatísticas gerais</div>
-                            <div class="card-category">Informações diárias sobre estatísticas no sistema</div>
-                            <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                                <div class="px-2 pb-2 pb-md-0 text-center">
-                                    <div id="circles-1"></div>
-                                    <h6 class="fw-bold mt-3 mb-0">Caixa</h6>
-                                </div>
-                                <div class="px-2 pb-2 pb-md-0 text-center">
-                                    <div id="circles-2"></div>
-                                    <h6 class="fw-bold mt-3 mb-0">Transações</h6>
-                                </div>
-                                <div class="px-2 pb-2 pb-md-0 text-center">
-                                    <div id="circles-3"></div>
-                                    <h6 class="fw-bold mt-3 mb-0">Fiscais</h6>
-                                </div>
-                                <div class="px-2 pb-2 pb-md-0 text-center">
-                                    <div id="circles-4"></div>
-                                    <h6 class="fw-bold mt-3 mb-0">Vendedores</h6>
-                                </div>
+    </div>
+    <div class="page-inner mt--5">
+        <div class="row mt--2">
+            <div class="col-md-7">
+                <div class="card full-height">
+                    <div class="card-body">
+                        <div class="card-title">Estatísticas gerais</div>
+                        <div class="card-category">Informações diárias sobre estatísticas no sistema</div>
+                        <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                            <div class="px-2 pb-2 pb-md-0 text-center">
+                                <div id="circles-1"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Usuários</h6>
+                            </div>
+                            <div class="px-2 pb-2pb-md-0 text-center">
+                                <div id="circles-2"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Créditos</h6>
+                            </div>
+                            <div class="px-2 pb-2 pb-md-0 text-center">
+                                <div id="circles-3"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Débitos</h6>
+                            </div>
+                            <div class="px-2 pb-2 pb-md-0 text-center">
+                                <div id="circles-4"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Transações</h6>
+                            </div>
+                            <div class="px-2 pb-2 pb-md-0 text-center">
+                                <div id="circles-5"></div>
+                                <h6 class="fw-bold mt-3 mb-0">Vendedores</h6>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="card card-warning full-height">
-                        <div class="card-header">
-                            <div class="card-title">Saldo diários</div>
-                            <div class="card-category">Março 25 - Abril 02</div>
+            </div>
+            <div class="col-md-5">
+                <div class="card card-warning full-height">
+                    <div class="card-header">
+                        <div class="card-title">Saldo diários</div>
+                        <div class="card-category">Março 25 - Abril 02</div>
+                    </div>
+                    <div class="card-body pb-0">
+                        <div class="mb-4 mt-2">
+                            <h1>AOA 4.578,58</h1>
                         </div>
-                        <div class="card-body pb-0">
-                            <div class="mb-4 mt-2">
-                                <h1>AOA 4.578,58</h1>
-                            </div>
-                            <div class="pull-in">
-                                <canvas id="dailySalesChart"></canvas>
-                            </div>
+                        <div class="pull-in">
+                            <canvas id="dailySalesChart"></canvas>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @push('js')
@@ -79,10 +84,10 @@
         Circles.create({
             id: 'circles-1',
             radius: 45,
-            value: 60,
-            maxValue: 100,
+            value: "{{ $stast->data->users_count }}",
+            maxValue: "{{ $stast->data->users_count }}",
             width: 7,
-            text: 5,
+            text: "{{ $stast->data->users_count }}",
             colors: ['#f1f1f1', '#FF9E27'],
             duration: 400,
             wrpClass: 'circles-wrp',
@@ -94,10 +99,10 @@
         Circles.create({
             id: 'circles-2',
             radius: 45,
-            value: 70,
-            maxValue: 100,
+            value: "{{ $stast->data->credits_count }}",
+            maxValue: "{{ $stast->data->transactions_count }}",
             width: 7,
-            text: 36,
+            text: "{{ $stast->data->credits_count }}",
             colors: ['#f1f1f1', '#2BB930'],
             duration: 400,
             wrpClass: 'circles-wrp',
@@ -109,11 +114,11 @@
         Circles.create({
             id: 'circles-3',
             radius: 45,
-            value: 40,
-            maxValue: 100,
+            value: "{{ $stast->data->debits_count }}",
+            maxValue: "{{ $stast->data->transactions_count }}",
             width: 7,
-            text: 12,
-            colors: ['#f1f1f1', '#F25961'],
+            text: "{{ $stast->data->debits_count }}",
+            colors: ['#f1f1f1', '#333333'],
             duration: 400,
             wrpClass: 'circles-wrp',
             textClass: 'circles-text',
@@ -124,11 +129,26 @@
         Circles.create({
             id: 'circles-4',
             radius: 45,
-            value: 40,
-            maxValue: 100,
+            value: "{{ $stast->data->transactions_count }}",
+            maxValue: "{{ $stast->data->transactions_count }}",
             width: 7,
-            text: 12,
-            colors: ['#f1f1f1', '#6861CE'],
+            text: "{{ $stast->data->transactions_count }}",
+            colors: ['#f1f1f1', '#412973'],
+            duration: 400,
+            wrpClass: 'circles-wrp',
+            textClass: 'circles-text',
+            styleWrapper: true,
+            styleText: true
+        })
+
+        Circles.create({
+            id: 'circles-5',
+            radius: 45,
+            value: "{{ $stast->data->workers_count }}",
+            maxValue: "{{ $stast->data->workers_count }}",
+            width: 7,
+            text: "{{ $stast->data->workers_count }}",
+            colors: ['#f1f1f1', '#F25961'],
             duration: 400,
             wrpClass: 'circles-wrp',
             textClass: 'circles-text',
@@ -183,6 +203,7 @@
             lineColor: '#ffa534',
             fillColor: 'rgba(255, 165, 52, .14)'
         });
+
     </script>
     <!-- Chart JS -->
     <script src="{{ asset('assets/js/plugin/chart.js/chart.min.js') }}"></script>
@@ -258,5 +279,6 @@
                 }
             }
         });
+
     </script>
 @endpush

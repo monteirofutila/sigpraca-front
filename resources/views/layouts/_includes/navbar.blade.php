@@ -8,18 +8,17 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{asset('assets/img/avatar_user_default.png')}}" alt="..." class="avatar-img rounded-circle">
+                        <img src="{{session('user')->photo}}" alt="..." class="avatar-img rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-lg"><img src="{{asset('assets/img/avatar_user_default.png')}}" alt="image profile"
-                                        class="avatar-img rounded"></div>
+                                <div class="avatar-lg"><img src="{{session('user')->photo}}" alt="image profile" class="avatar-img rounded"></div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
-                                    <p class="text-muted">hello@example.com</p>
+                                    <h4>{{session('user')->name}}</h4>
+                                    <p class="text-muted">{{session('user')->roles[0]}}</p>
                                     <a href="profile.html" class="btn btn-xs btn-warning btn-sm">Perfil</a>
                                 </div>
                             </div>
