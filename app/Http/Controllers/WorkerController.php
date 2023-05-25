@@ -41,6 +41,11 @@ class WorkerController extends Controller
         $dto = CreateWorkerDTO::makeFromRequest($request);
         $worker = $this->service->new($dto);
 
+        if ($worker === null) {
+            toast('Falha ao cadastrar novo vendedor!', 'error');
+            return redirect()->back();
+        }
+
         if (isset($worker->errors)) {
             toast('Não foi possivel adicionar o vendedor!', 'error');
             return redirect()->back()->withErrors($worker->errors);

@@ -37,7 +37,7 @@ class UserService
         $status = $response['status'];
         $data = $response['data'];
 
-        if ($status === 200 || $status === 422) {
+        if ($status === 200 || $status === 422 || $status === 201) {
             return $data;
         } else if ($status === 401) {
             abort(401);

@@ -1,4 +1,4 @@
-<form id="exampleValidation" action="{{route('transactions.debit.store')}}" method="POST">
+<form id="exampleValidation" action="{{route('transactions.debit.confirmation')}}" method="GET">
     @csrf
     <div class="card-body">
         <div class="form-group form-show-validation row py-4">
@@ -8,12 +8,23 @@
         </div>
         <div class="form-group form-show-validation row d-flex justify-content-center">
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <label for="workerID" class="placeholder">Identificador <span
-                        class="required-label">*</span></label>
-                <input type="text" class="form-control" id="workerID" name="workerID"
-                    placeholder="Código do identificador" required>
-            </div>
+                <label for="worker_id" class="placeholder">Identificador <span class="required-label">*</span></label>
+                <input type="text" class="form-control" id="worker_id" name="worker_id" value="{{old('worker_id')}}" placeholder="Código do identificador" required>
+                @error('worker_id')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
 
+            </div>
+        </div>
+        <div class="form-group form-show-validation row d-flex justify-content-center">
+            <div class="col-lg-4 col-md-9 col-sm-8">
+                <label for="password" class="placeholder">Confirmar password <span class="required-label">*</span></label>
+                <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}" placeholder="Confirmar password" required>
+                @error('password')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+
+            </div>
         </div>
 
     </div>

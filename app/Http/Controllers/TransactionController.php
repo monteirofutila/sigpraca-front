@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\Transactions\CreditDebitDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Http\Requests\CreditDebitRequest;
+use App\Services\AccountService;
 use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    public function __construct(protected TransactionService $service, )
-    {
+    public function __construct(
+        protected TransactionService $transactionService,
+        protected AccountService $accountService,
+    ) {
         $this->middleware(EnsureTokenIsValid::class);
     }
 
 
     public function index()
     {
-        $transactions = $this->service->getAll();
+        $transactions = $this->transactionService->getAll();
         return view('transactions.list_transactions', compact('transactions'));
     }
 
@@ -25,9 +30,47 @@ class TransactionController extends Controller
         return view('credits.add_credits');
     }
 
-    public function storeCredit(Request $request)
+    public function addDebit()
     {
-        $transaction = $this->service->addCredit($request->workerID);
+        return view('debits.add_debits');
+    }
+
+    public function confirmationCredit(CreditDebitRequest $request)
+    {
+        $dto = CreditDebitDTO::makeFromRequest($request);
+        $account = $this->accountService->getAccountByWorker($dto->worker_id);
+
+        $data = (object) [
+            'worker_id' => $dto->worker_id,
+            'password' => $dto->password,
+            'balance' => $account->data->balance,
+            'name' => $account->data->worker->name,
+            'value_credit' => null,
+        ];
+
+        return view('credits.confirmation_credits', compact('data'));
+    }
+
+    public function confirmationDebit(CreditDebitRequest $request)
+    {
+        $dto = CreditDebitDTO::makeFromRequest($request);
+        $account = $this->accountService->getAccountByWorker($dto->worker_id);
+
+        $data = (object) [
+            'worker_id' => $dto->worker_id,
+            'password' => $dto->password,
+            'balance' => $account->data->balance,
+            'name' => $account->data->worker->name,
+            'value_debit' => null,
+        ];
+
+        return view('debits.confirmation_debits', compact('data'));
+    }
+
+    public function storeCredit(CreditDebitRequest $request)
+    {
+        $dto = CreditDebitDTO::makeFromRequest($request);
+        $transaction = $this->transactionService->addCredit($dto);
 
         if ($transaction === null) {
             toast('Falha ao adicionar crédito!', 'error');
@@ -43,14 +86,10 @@ class TransactionController extends Controller
         return redirect()->route('transactions.credit');
     }
 
-    public function addDebit()
+    public function storeDebit(CreditDebitRequest $request)
     {
-        return view('debits.add_debits');
-    }
-
-    public function storeDebit(Request $request)
-    {
-        $transaction = $this->service->addDebit($request->workerID);
+        $dto = CreditDebitDTO::makeFromRequest($request);
+        $transaction = $this->transactionService->addDebit($dto);
 
         if ($transaction === null) {
             toast('Falha ao adicionar débito!', 'error');
@@ -65,5 +104,4 @@ class TransactionController extends Controller
         toast('Item adicionado com sucesso!', 'success');
         return redirect()->route('transactions.debit');
     }
-
 }

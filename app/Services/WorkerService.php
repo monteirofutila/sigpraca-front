@@ -38,7 +38,7 @@ class WorkerService
         $status = $response['status'];
         $data = $response['data'];
 
-        if ($status === 200 || $status === 422) {
+        if ($status === 200 || $status === 422 || $status === 201) {
             return $data;
         } elseif ($status === 500) {
             abort(500);

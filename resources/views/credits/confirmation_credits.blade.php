@@ -36,9 +36,9 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header">
-						<div class="card-title">Adicionar crédito</div>
+						<div class="card-title">Confirmar crédito</div>
 					</div>
-					@include('credits.forms.form_add_credits')
+					@include('credits.forms.form_confirmation_credits')
 				</div>
 			</div>
 		</div>

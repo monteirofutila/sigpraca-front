@@ -42,6 +42,11 @@ class UserController extends Controller
         $dto = CreateUserDTO::makeFromRequest($request);
         $user = $this->service->new($dto);
 
+        if ($user === null) {
+            toast('Falha ao cadastrar novo usuário!', 'error');
+            return redirect()->back();
+        }
+
         if (isset($user->errors)) {
             toast('Não foi possivel adicionar o usuário!', 'error');
             return redirect()->back()->withErrors($user->errors);

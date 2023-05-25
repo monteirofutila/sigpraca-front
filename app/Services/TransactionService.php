@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\Transactions\CreditDebitDTO;
 use App\Repositories\TransactionRepository;
 
 class TransactionService
@@ -25,12 +26,11 @@ class TransactionService
         } else {
             return null;
         }
-
     }
 
-    public function addCredit(string $workerID): ?object
+    public function addCredit(CreditDebitDTO $dto): ?object
     {
-        $response = $this->repository->addCredit($workerID);
+        $response = $this->repository->addCredit($dto->worker_id);
 
         $status = $response['status'];
         $data = $response['data'];
@@ -44,12 +44,11 @@ class TransactionService
         } else {
             return null;
         }
-
     }
 
-    public function addDebit(string $workerID): ?object
+    public function addDebit(CreditDebitDTO $dto): ?object
     {
-        $response = $this->repository->addDebit($workerID);
+        $response = $this->repository->addDebit($dto->worker_id);
 
         $status = $response['status'];
         $data = $response['data'];
@@ -63,8 +62,5 @@ class TransactionService
         } else {
             return null;
         }
-
     }
-
-
 }
