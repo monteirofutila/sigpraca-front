@@ -1,2 +1,2 @@
-# SIGPRACA FRONTEND BLADE
-Sistema de Gerenciamento de Praças (Mercados Informal)
+# SIGM FRONTEND BLADE
+Sistema de Gerenciamento de Mercado
