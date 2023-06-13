@@ -212,7 +212,8 @@
         var myDailySalesChart = new Chart(dailySalesChart, {
             type: 'line',
             data: {
-                labels: ["January",
+                labels: [
+                    "January",
                     "February",
                     "March",
                     "April",
