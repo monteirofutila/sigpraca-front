@@ -27,7 +27,16 @@ class MarketRepository implements MarketRepositoryInterface
 
     public function update(array $data): array
     {
-        $response = $this->http->withToken(session('token'))->put(config('app.api.base_url') . "/market", $data);
+
+        if (isset($data['photo'])) {
+            $this->http->attach(
+                'photo',
+                file_get_contents($data['photo']),
+                $data['photo']->getClientOriginalName()
+            );
+        }
+
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/market", $data);
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -36,5 +45,6 @@ class MarketRepository implements MarketRepositoryInterface
             'status' => $statusCode,
             'data' => $responseData
         ];
+
     }
 }

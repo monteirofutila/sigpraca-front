@@ -1,16 +1,16 @@
 <?php
 
-namespace App\DTO\Markets;
+namespace App\DTO\Categories;
 
-use App\Http\Requests\MarketRequest;
+use App\Http\Requests\CategoryRequest;
 
-class MarketDTO
+class CategoryDTO
 {
     public function __construct(
         public string $name,
         public ?string $description,
-        public ?string $address,
-        public $photo,
+        public string $payment_period,
+        public string $debit_amount,
     ) {
     }
 
@@ -21,13 +21,13 @@ class MarketDTO
         return array_combine($keys, $properties);
     }
 
-    public static function makeFromRequest(MarketRequest $request): self
+    public static function makeFromRequest(CategoryRequest $request): self
     {
         return new self(
             $request->name,
             $request->description,
-            $request->address,
-            $request->photo,
+            $request->payment_period,
+            $request->debit_amount,
         );
     }
 }

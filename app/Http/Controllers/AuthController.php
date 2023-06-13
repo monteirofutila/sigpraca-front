@@ -6,18 +6,20 @@ use App\DTO\Auth\LoginDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\LoginRequest;
 use App\Services\AuthService;
+use App\Services\MarketService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
-    public function __construct(protected AuthService $service)
+    public function __construct(protected AuthService $service, protected MarketService $marketService)
     {
         $this->middleware(EnsureTokenIsValid::class)->only('logout');
     }
     public function show()
     {
-        return view('auth.login');
+        $marketName = $this->marketService->getFirst()->data->name;
+        return view('auth.login', compact('marketName'));
     }
 
     public function login(LoginRequest $request)

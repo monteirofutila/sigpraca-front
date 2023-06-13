@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Services\SaleService;
 use App\Services\StatistService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
 
-    public function __construct(protected StatistService $service)
+    public function __construct(protected StatistService $service, protected SaleService $saleService)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -20,7 +22,12 @@ class DashboardController extends Controller
     public function home()
     {
         $stast = $this->service->stast();
-        return view('home.dashboard', compact('stast'));
+        $sale = $this->saleService->getSaleByPeriod(
+            startDate: Carbon::now()->startOfDay(),
+            lastDate: Carbon::now()->endOfDay()
+        );
+
+        return view('home.dashboard', compact('stast', 'sale'));
     }
 
     /**

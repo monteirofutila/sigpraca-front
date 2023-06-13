@@ -2,7 +2,7 @@
 <div class="logo-header position-fixed" data-background-color="dark">
 
     <a href="{{route('home')}}" class="logo">
-        <p class="navbar-brand text-light">SIGPRACA</p>
+        <p class="navbar-brand text-light">SIGM</p>
     </a>
     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse"
         aria-expanded="false" aria-label="Toggle navigation">

@@ -2,7 +2,7 @@
 @section('titulo', 'Login')
 @section('content')
 <div class="container container-login animated fadeIn">
-    <h3 class="text-center">Entrar no Sistema</h3>
+    <h3 class="text-center">{{$marketName}}</h3>
     <div class="login-form">
         <form action="{{ route('login') }}" method="post">
             @csrf

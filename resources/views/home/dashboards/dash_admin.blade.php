@@ -60,11 +60,11 @@
                 <div class="card card-warning full-height">
                     <div class="card-header">
                         <div class="card-title">Saldo diários</div>
-                        <div class="card-category">Março 25 - Abril 02</div>
+                        <div class="card-category">{{now()->calendar()}}</div>
                     </div>
                     <div class="card-body pb-0">
                         <div class="mb-4 mt-2">
-                            <h1>AOA 4.578,58</h1>
+                            <h1>AOA {{ number_format($sale->data->amount, 2, ',', '.') }}</h1>
                         </div>
                         <div class="pull-in">
                             <canvas id="dailySalesChart"></canvas>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\Users\MarketDTO;
+use App\DTO\Markets\MarketDTO;
+use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\MarketRequest;
 use App\Services\MarketService;
-use Illuminate\Http\Request;
 
 class MarketController extends Controller
 {
@@ -17,27 +17,27 @@ class MarketController extends Controller
     public function edit()
     {
         //
-        $data = $this->service->getFirst();
-        return view('markets.list_workers', compact('data'));
+        $data = $this->service->getFirst()->data;
+        return view('markets.edit_markets', compact('data'));
     }
 
-    public function update(MarketRequest $request, string $id)
+    public function update(MarketRequest $request)
     {
         $dto = MarketDTO::makeFromRequest($request);
-        $worker = $this->service->new($dto);
+        $market = $this->service->update($dto);
 
-        if ($worker === null) {
-            toast('Falha ao cadastrar novo vendedor!', 'error');
+        if ($market === null) {
+            toast('Falha ao actualizado dados!', 'error');
             return redirect()->back();
         }
 
-        if (isset($worker->errors)) {
+        if (isset($market->errors)) {
             toast('Não foi possivel adicionar o vendedor!', 'error');
-            return redirect()->back()->withErrors($worker->errors);
+            return redirect()->back()->withErrors($market->errors);
         }
 
-        toast('Item criado com sucesso!', 'success');
-        return redirect()->route('workers.create');
+        toast('Item actualizado com sucesso!', 'success');
+        return redirect()->route('markets.edit');
     }
 
 }

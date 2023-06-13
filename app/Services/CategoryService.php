@@ -2,32 +2,37 @@
 
 namespace App\Services;
 
-use App\DTO\Markets\MarketDTO;
-use App\Repositories\MarketRepository;
+use App\DTO\Categories\CategoryDTO;
+use App\Repositories\CategoryRepository;
 
-class MarketService
+
+class CategoryService
 {
-    public function __construct(protected MarketRepository $repository)
+    public function __construct(protected CategoryRepository $repository)
     {
     }
-    public function getFirst(): ?object
+
+    public function getAll(): ?object
     {
-        $response = $this->repository->getFisrt();
+        $response = $this->repository->getAll();
 
         $status = $response['status'];
         $data = $response['data'];
 
         if ($status === 200) {
             return $data;
+        } else if ($status === 401) {
+            abort(401);
         } else if ($status === 500) {
             abort(500);
+        } else {
+            return null;
         }
 
     }
-
-    public function update(MarketDTO $dto): ?object
+    public function new(CategoryDTO $dto): ?object
     {
-        $response = $this->repository->update($dto->toArray());
+        $response = $this->repository->new($dto->toArray());
 
         $status = $response['status'];
         $data = $response['data'];
@@ -43,5 +48,4 @@ class MarketService
         }
 
     }
-
 }

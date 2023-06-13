@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 require base_path('routes/routes/auth.php');
 require base_path('routes/routes/dashboard.php');
+require base_path('routes/routes/categories.php');
 require base_path('routes/routes/users.php');
 require base_path('routes/routes/workers.php');
 require base_path('routes/routes/transactions.php');
-require base_path('routes/routes/market.php');
+require base_path('routes/routes/markets.php');
