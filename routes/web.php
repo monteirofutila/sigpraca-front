@@ -20,3 +20,4 @@ require base_path('routes/routes/users.php');
 require base_path('routes/routes/workers.php');
 require base_path('routes/routes/transactions.php');
 require base_path('routes/routes/markets.php');
+require base_path('routes/routes/reports.php');

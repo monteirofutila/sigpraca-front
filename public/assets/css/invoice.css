@@ -1,0 +1,63 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'sans-serif';
+}
+
+.clear {
+    clear: both;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding-top: 100px;
+    position: relative;
+}
+
+.header .desc {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.body {
+    margin-top: 20px;
+}
+
+.body .sessao {
+    margin-bottom: 35px;
+}
+
+.body .sessao h4{
+    margin-bottom: 5px;
+}
+
+.body .sessao hr{
+    margin-bottom: 10px;
+    border: none;
+    border-top: 1px solid #323131; 
+}
+
+.body .sessao .dado {
+    padding: 5px 0;
+    width: 100%;
+}
+
+.body .sessao .dado p {
+    font-weight: bold;
+}
+.body .sessao .dado .value {
+    font-weight: lighter;
+    text-align: right;
+}
+
+/*Tipografia*/
+
+p {
+    display: inline;
+    font-size: 0.9rem;
+}
+
+h4 {
+    font-size: 0.9rem;
+}
