@@ -3,7 +3,7 @@
     <div class="card-body">
         <div class="form-group form-show-validation row py-4">
             <div class="col-md-12">
-                <h4 class="text-center">Indique o código identificador <br> do trabalhador</h4>
+                <h4 class="text-center">Indique o código identificador <br> do Feirante</h4>
             </div>
         </div>
         <div class="form-group form-show-validation row d-flex justify-content-center">

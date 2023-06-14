@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\DTO\Transactions\CreditDebitDTO;
+use App\DTO\Transactions\CreditDTO;
+use App\DTO\Transactions\DebitDTO;
 use App\Repositories\TransactionRepository;
 
 class TransactionService
@@ -28,9 +29,27 @@ class TransactionService
         }
     }
 
-    public function addCredit(CreditDebitDTO $dto): object|null|bool
+    public function getTransactionsByPeriod($startDate, $lastDate): ?object
     {
-        $response = $this->repository->addCredit($dto->worker_id, $dto->password);
+        $response = $this->repository->getTransactionsByPeriod($startDate, $lastDate);
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200) {
+            return $data;
+        } else if ($status === 401) {
+            abort(401);
+        } else if ($status === 500) {
+            abort(500);
+        } else {
+            return null;
+        }
+    }
+
+    public function addCredit(CreditDTO $dto): object|null|bool
+    {
+        $response = $this->repository->addCredit($dto->toArray());
 
         $status = $response['status'];
         $data = $response['data'];
@@ -48,9 +67,9 @@ class TransactionService
         }
     }
 
-    public function addDebit(CreditDebitDTO $dto): object|null|bool
+    public function addDebit(DebitDTO $dto): object|null|bool
     {
-        $response = $this->repository->addDebit($dto->worker_id, $dto->password);
+        $response = $this->repository->addDebit($dto->toArray());
 
         $status = $response['status'];
         $data = $response['data'];

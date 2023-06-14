@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Services\SaleService;
 use App\Services\StatistService;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
 
-    public function __construct(protected StatistService $service, protected SaleService $saleService)
+    public function __construct(protected StatistService $service, protected SaleService $saleService, protected TransactionService $transactionService)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -21,13 +22,19 @@ class DashboardController extends Controller
      */
     public function home()
     {
+        Carbon::setLocale('pt_BR');
+        $data = Carbon::now();
         $stast = $this->service->stast();
+        $calendar = $data->toFormattedDateString();
         $sale = $this->saleService->getSaleByPeriod(
-            startDate: Carbon::now()->startOfDay(),
-            lastDate: Carbon::now()->endOfDay()
+            startDate: $data->startOfDay(),
+            lastDate: $data->endOfDay()
         );
-
-        return view('home.dashboard', compact('stast', 'sale'));
+        $transactions = $this->transactionService->getTransactionsByPeriod(
+            startDate: $data->startOfDay(),
+            lastDate: $data->endOfDay()
+        );
+        return view('home.dashboard', compact('stast', 'sale', 'calendar', 'transactions'));
     }
 
     /**

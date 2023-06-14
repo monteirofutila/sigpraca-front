@@ -3,6 +3,7 @@
 	<div class="card-body">
 		<input type="hidden" value="{{$data->worker_id}}" name="worker_id">
 		<input type="hidden" value="{{$data->password}}" name="password">
+		<input type="hidden" value="{{$data->value_credit}}" name="amount">
 		<div class="form-group form-show-validation row d-flex justify-content-center">
 			<div class="col-lg-4 col-md-9 col-sm-8">
 				<label for="value" class="placeholder">Montante</label>
@@ -17,8 +18,14 @@
 		</div>
 		<div class="form-group form-show-validation row d-flex justify-content-center">
 			<div class="col-lg-4 col-md-9 col-sm-8">
-				<label for="name" class="placeholder">Vendedor</label>
+				<label for="name" class="placeholder">Feirante</label>
 				<input type="text" class="form-control" id="name" value="{{$data->name}}" name="name" disabled>
+			</div>
+		</div>
+		<div class="form-group form-show-validation row d-flex justify-content-center">
+			<div class="col-lg-4 col-md-9 col-sm-8">
+				<label for="category" class="placeholder">Categoria</label>
+				<input type="text" class="form-control" id="category" value="{{$data->category}}" name="category" disabled>
 			</div>
 		</div>
 		<div class="form-group form-show-validation row d-flex justify-content-center">

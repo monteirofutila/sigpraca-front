@@ -50,7 +50,7 @@
                             </div>
                             <div class="px-2 pb-2 pb-md-0 text-center">
                                 <div id="circles-5"></div>
-                                <h6 class="fw-bold mt-3 mb-0">Vendedores</h6>
+                                <h6 class="fw-bold mt-3 mb-0">Feirantes</h6>
                             </div>
                         </div>
                     </div>
@@ -59,18 +59,78 @@
             <div class="col-md-5">
                 <div class="card card-warning full-height">
                     <div class="card-header">
-                        <div class="card-title">Saldo diários</div>
-                        <div class="card-category">{{now()->calendar()}}</div>
+                        <div class="card-title">Receita diária</div>
+                        <div class="card-category">{{ $calendar }}</div>
                     </div>
                     <div class="card-body pb-0">
                         <div class="mb-4 mt-2">
-                            <h1>AOA {{ number_format($sale->data->amount, 2, ',', '.') }}</h1>
+                            <h1>AOA
+                                {{ number_format($sale->data->amount, 2, ',', '.') }}
+                            </h1>
                         </div>
                         <div class="pull-in">
                             <canvas id="dailySalesChart"></canvas>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Transações diária</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="add-row" class="display table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Número de operação</th>
+                                        <th>Descrição</th>
+                                        <th>Montante</th>
+                                        <th>Feirante</th>
+                                        <th>Data</th>
+                                        <th style="width: 10%">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>Número de operação</th>
+                                        <th>Descrição</th>
+                                        <th>Montante</th>
+                                        <th>Feirante</th>
+                                        <th>Data</th>
+                                        <th style="width: 10%">Ação</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach($transactions->data as $value)
+                                        <tr>
+                                            <td>{{ '#'.$value->code_number }}</td>
+                                            <td>{{ $value->description }}</td>
+                                            <td>{{ number_format($value->amount, 2, ',', '.') }}
+                                            </td>
+                                            <td>{{ $value->account->worker->name }}</td>
+                                            <td>{{ date('d/m/Y H:m:s', strtotime($value->created_at)) }}
+                                            </td>
+                                            <td>
+                                                <div class="form-button-action">
+                                                    <button type="button" data-toggle="tooltip" title=""
+                                                        class="btn btn-link btn-primary btn-lg"
+                                                        data-original-title="Edit Task">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -279,6 +339,36 @@
                     }]
                 }
             }
+        });
+
+    </script>
+@endpush
+
+@push('js')
+    <script src="{{ asset('assets/js/plugin/datatables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#add-row').DataTable({
+                "pageLength": 5,
+                "bJQueryUI": true,
+                "oLanguage": {
+                    "sProcessing": "Processando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "Não foram encontrados resultados",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando de 0 até 0 de 0 registros",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix": "",
+                    "sSearch": "Pesquisar:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext": "Seguinte",
+                        "sLast": "Último"
+                    }
+                }
+            });
         });
 
     </script>

@@ -3,9 +3,10 @@
     <div class="card-body">
         <div class="form-group form-show-validation row py-4">
             <div class="col-md-12">
-                <h4 class="text-center">Indique o código identificador <br> do trabalhador</h4>
+                <h4 class="text-center">Indique o código identificador <br> do Feirante</h4>
             </div>
         </div>
+        
         <div class="form-group form-show-validation row d-flex justify-content-center">
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <label for="worker_id" class="placeholder">Identificador <span class="required-label">*</span></label>
@@ -13,9 +14,19 @@
                 @error('worker_id')
                 <small class="text-danger">{{ $message }}</small>
                 @enderror
-
             </div>
         </div>
+
+        <div class="form-group form-show-validation row d-flex justify-content-center">
+            <div class="col-lg-4 col-md-9 col-sm-8">
+                <label for="amount" class="placeholder">Montante <span class="required-label">*</span></label>
+                <input type="number" class="form-control" id="amount" name="amount" value="{{old('amount')}}" placeholder="Montente do crédito" required>
+                @error('amount')
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
+        
         <div class="form-group form-show-validation row d-flex justify-content-center">
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <label for="password" class="placeholder">Confirmar password <span class="required-label">*</span></label>

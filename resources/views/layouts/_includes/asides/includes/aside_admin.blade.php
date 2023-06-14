@@ -53,12 +53,12 @@
     <h4 class="text-section">Administração</h4>
 </li>
 <li class="nav-item">
-    <a data-toggle="collapse" href="#workers">
+    <a data-toggle="collapse" href="#categories">
         <i class="fas fa-user-tie"></i>
         <p>Categorias</p>
         <span class="caret"></span>
     </a>
-    <div class="collapse" id="workers">
+    <div class="collapse" id="categories">
         <ul class="nav nav-collapse">
             <li>
                 <a href="{{route('categories.create')}}">
