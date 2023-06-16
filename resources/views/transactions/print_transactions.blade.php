@@ -94,7 +94,6 @@
 
 <script>
     function imprimirFactura() {
-        alert('clicou');
         window.print();
     }
 
