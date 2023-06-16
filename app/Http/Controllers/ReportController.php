@@ -19,10 +19,12 @@ class ReportController extends Controller
     public function transactionPrint(string $transactionID)
     {
         $data = $this->transactionService->findByID($transactionID)->data;
-        return PDF::setOption([
+
+        $pdf = PDF::setOption([
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
         ])->setPaper([0, 0, 219, 377])->loadView('debits.reports.invoice', compact('data'))->stream();
 
+        return view('transactions.print_transactions', compact('pdf'));
     }
 }
