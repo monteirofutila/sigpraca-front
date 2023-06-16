@@ -44,6 +44,11 @@
                                 data-original-title="Edit Task">
                                 <i class="fa fa-eye"></i>
                             </button>
+                            <a href="{{ route('reports.transaction', $value->id) }}"
+                                data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"
+                                data-original-title="Edit Task">
+                                <i class="fa fa-print"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

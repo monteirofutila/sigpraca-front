@@ -11,63 +11,49 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="desc">
-                <p>A operação que efectuou foi registada com sucesso através do serviço BAIDirecto</p>
-            </div>
-        </div>
-        <div class="body">
-            <div class="sessao">
-                <h4>Dados do Feirante</h4>
-                <hr>
-                <div class="dado">
-                    <h4>Identificador</h4>
-                </div>
-                <div class="dado">
-                    <h4>Feirante</h4>
-                </div>
-                <div class="dado">
-                    <h4>Categoria</h4>
-                </div>
-            </div>
 
-
-            <div class="sessao">
-
-                <h4>Dados da Operação</h4>
-                <hr>
-                <div class="dado">
-                    <p class="key">Número de operação</p>
-                    <p class="value">00055</p>
-                </div>
-                <div class="dado">
-                    <p class="key">Tipo de operação</p>
-                    <p class="value">00055</p>
-                </div>
-                <div class="dado">
-                    <p class="key">Montante</p>
-                    <p class="value">00055</p>
-                </div>
-                <div class="dado">
-                    <p class="key">Data de Execução</p>
-                    <p class="value">00055</p>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="card-footer">
-            <div id="container">
-                <div style="text-align: center">
-                    <p id="rda">
-                        Conselho Províncial de
-                        Enfermagem de Luanda, aos <span>{{ date('d') }}</span> de
-                        <span>{{ date('m') }}</span> de
-                        <span>{{ date('Y') }}</span>
-                    </p>
-                </div>
-            </div>
-        </div> -->
-    </div>
+    <h1>A operação que efectuou foi registada com sucesso através do serviço SIGM</h1>
+    <br>
+    <table>
+        <tr>
+            <th colspan="2">Dados do Feirante</th>
+        </tr>
+        <tr>
+            <td>Identificador</td>
+            <td>{{ $data->account->worker->code_number }}</td>
+        </tr>
+        <tr>
+            <td>Feirante</td>
+            <td>{{ $data->account->worker->name }}</td>
+        </tr>
+        <tr>
+            <td>Categoria</td>
+            <td>{{ '' }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th colspan="2">Dados da Operação</th>
+        </tr>
+        <tr>
+            <td>Número de operação</td>
+            <td>{{ $data->code_number }}</td>
+        </tr>
+        <tr>
+            <td>Tipo de operação</td>
+            <td>{{ $data->description }}</td>
+        </tr>
+        <tr>
+            <td>Montante</td>
+            <td>{{ number_format($data->amount, 2, ',', '.') }}
+        </tr>
+        <tr>
+            <td>Data de Execução</td>
+            <td>{{ $data->created_at }}</td>
+        </tr>
+    </table>
+    <br>
+    <p>Observações: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
 </body>
 

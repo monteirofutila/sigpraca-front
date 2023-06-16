@@ -3,4 +3,4 @@
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/reports', [ReportController::class, 'report']);
+Route::get('/transactions/{transactionID}/print', [ReportController::class, 'transactionPrint'])->name('reports.transaction');

@@ -25,6 +25,19 @@ class TransactionRepository implements TransactionRepositoryInterface
         ];
     }
 
+    public function findByID(string $transactionID): array
+    {
+        $response = $this->http->withToken(session('token'))->get(config('app.api.base_url') . "/transactions/$transactionID");
+
+        $statusCode = $response->status();
+        $responseData = $response->object();
+
+        return [
+            'status' => $statusCode,
+            'data' => $responseData
+        ];
+    }
+
     public function getTransactionsByPeriod($startDate, $lastDate): array
     {
         $response = $this->http->withToken(session('token'))->get(config('app.api.base_url') . "/transactions/$startDate/$lastDate");
