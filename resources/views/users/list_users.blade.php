@@ -23,7 +23,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Usuários</a>
+                    <a href="{{ route('users.index') }}">Usuários</a>
                 </li>
             </ul>
         </div>

@@ -25,15 +25,16 @@ class StoreWorkerRequest extends FormRequest
             'name' => 'required|string',
             'email' => 'nullable|email',
             'photo' => 'nullable|image|max:2048|mimes:png,jpg',
-            'phone_mobile' => 'required|string',
+            'phone_mobile' => 'nullable|string',
             'phone_other' => 'nullable|string',
             'address_country' => 'nullable|string',
             'address_state' => 'nullable|string',
             'address_city' => 'nullable|string',
             'address_street' => 'nullable|string',
-            'date_birth' => 'required|date|date_format:Y-m-d|',
+            'date_birth' => 'nullable|date|date_format:Y-m-d|',
             'gender' => 'required|in:M,F|',
-            'bi' => 'required|string|size:14|',
+            'bi' => 'nullable|string',
+            'category_id' => 'required',
         ];
     }
 }

@@ -8,26 +8,25 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{session('user')->photo}}" alt="..." class="avatar-img rounded-circle">
+                        <img src="{{ session('user')->photo }}" alt="..."
+                            class="avatar-img rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-lg"><img src="{{session('user')->photo}}" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="avatar-lg"><img src="{{ session('user')->photo }}"
+                                        alt="image profile" class="avatar-img rounded"></div>
                                 <div class="u-text">
-                                    <h4>{{session('user')->name}}</h4>
-                                    <p class="text-muted">{{session('user')->roles[0]}}</p>
-                                    <a href="profile.html" class="btn btn-xs btn-warning btn-sm">Perfil</a>
+                                    <h4>{{ session('user')->name }}</h4>
+                                    <p class="text-muted">{{ session('user')->roles[0] }}</p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Personalização</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('logout')}}">Sair</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}">Sair</a>
                         </li>
                     </div>
                 </ul>

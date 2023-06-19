@@ -23,7 +23,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Transações</a>
+                    <a href="{{ route('transactions.index') }}">Transações</a>
                 </li>
             </ul>
         </div>
@@ -43,7 +43,7 @@
                                     <i class="fa fa-plus"></i>
                                     Debitar
                                 </a>
-                                <button onclick="imprimirFactura()" class="btn btn-warning btn-round">
+                                <button onclick="imprimirFactura()" class="btn btn-secondary btn-round">
                                     <i class="fa fa-print"></i>
                                     Imprimir
                                 </button>

@@ -19,6 +19,7 @@ class CreateWorkerDTO
         public $date_birth,
         public string $gender,
         public ?string $bi,
+        public string $category_id,
     ) {
     }
 
@@ -44,6 +45,7 @@ class CreateWorkerDTO
             $request->date_birth,
             $request->gender,
             $request->bi,
+            $request->category_id,
         );
     }
 }

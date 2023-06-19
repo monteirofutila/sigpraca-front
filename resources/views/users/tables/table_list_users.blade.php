@@ -2,18 +2,18 @@
     <table id="add-row" class="display table table-striped table-hover">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Identificador</th>
                 <th>Nome completo</th>
                 <th>Nome de usuário</th>
                 <th>Função</th>
                 <th>Email</th>
                 <th>Telefone</th>
-               <th style="width: 10%">Ação</th>
+                <th style="width: 10%">Ação</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-				<th>ID</th>
+                <th>Identificador</th>
                 <th>Nome completo</th>
                 <th>Nome de usuário</th>
                 <th>Função</th>
@@ -25,7 +25,7 @@
         <tbody>
             @foreach($users->data as $data)
                 <tr>
-					<td>{{ $data->id }}</td>
+                    <td>{{ $data->code_number }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->user_name }}</td>
                     <td>{{ $data->roles[0] }}</td>

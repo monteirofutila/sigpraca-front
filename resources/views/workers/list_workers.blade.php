@@ -23,7 +23,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Feirantes</a>
+                    <a href="{{ route('workers.index') }}">Feirantes</a>
                 </li>
             </ul>
         </div>

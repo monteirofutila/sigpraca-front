@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td>Categoria</td>
-            <td>{{ '' }}</td>
+            <td>{{ $data->account->category->name }}</td>
         </tr>
     </table>
     <table>

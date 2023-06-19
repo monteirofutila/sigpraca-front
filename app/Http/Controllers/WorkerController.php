@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\DTO\Workers\CreateWorkerDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\StoreWorkerRequest;
+use App\Services\CategoryService;
 use App\Services\WorkerService;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
 {
-    public function __construct(protected WorkerService $service)
+    public function __construct(protected WorkerService $service, protected CategoryService $categoryService)
     {
         $this->middleware(EnsureTokenIsValid::class);
     }
@@ -29,7 +30,8 @@ class WorkerController extends Controller
      */
     public function create()
     {
-        return view('workers.add_workers');
+        $categories = $this->categoryService->getAll();
+        return view('workers.add_workers', compact('categories'));
     }
 
     /**
@@ -42,12 +44,12 @@ class WorkerController extends Controller
         $worker = $this->service->new($dto);
 
         if ($worker === null) {
-            toast('Falha ao cadastrar novo vendedor!', 'error');
+            toast('Falha ao cadastrar novo feirante!', 'error');
             return redirect()->back();
         }
 
         if (isset($worker->errors)) {
-            toast('Não foi possivel adicionar o vendedor!', 'error');
+            toast('Não foi possivel adicionar o feirante!', 'error');
             return redirect()->back()->withErrors($worker->errors);
         }
 

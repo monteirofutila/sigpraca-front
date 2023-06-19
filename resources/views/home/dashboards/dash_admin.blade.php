@@ -90,6 +90,7 @@
                                         <th>Descrição</th>
                                         <th>Montante</th>
                                         <th>Feirante</th>
+                                        <th>Categoria</th>
                                         <th>Data</th>
                                         <th style="width: 10%">Ação</th>
                                     </tr>
@@ -100,6 +101,7 @@
                                         <th>Descrição</th>
                                         <th>Montante</th>
                                         <th>Feirante</th>
+                                        <th>Categoria</th>
                                         <th>Data</th>
                                         <th style="width: 10%">Ação</th>
                                     </tr>
@@ -112,15 +114,17 @@
                                             <td>{{ number_format($value->amount, 2, ',', '.') }}
                                             </td>
                                             <td>{{ $value->account->worker->name }}</td>
+                                            <td>{{ $value->account->category->name }}</td>
                                             <td>{{ date('d/m/Y H:m:s', strtotime($value->created_at)) }}
                                             </td>
                                             <td>
                                                 <div class="form-button-action">
-                                                    <button type="button" data-toggle="tooltip" title=""
+                                                    <a href="{{ route('reports.transaction', $value->id) }}"
+                                                        data-toggle="tooltip" title=""
                                                         class="btn btn-link btn-primary btn-lg"
-                                                        data-original-title="Edit Task">
-                                                        <i class="fa fa-eye"></i>
-                                                    </button>
+                                                        data-original-title="Imprimir factura">
+                                                        <i class="fa fa-print"></i>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -128,6 +132,7 @@
                                 </tbody>
                             </table>
                         </div>
+
                     </div>
                 </div>
 

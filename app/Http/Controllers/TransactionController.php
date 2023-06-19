@@ -79,6 +79,11 @@ class TransactionController extends Controller
             return redirect()->route('transactions.credit');
         }
 
+        if (isset($transaction->message)) {
+        toast($transaction->message, 'error');
+        return redirect()->route('transactions.credit');
+        }
+
         if ($transaction === null) {
             toast('Falha ao adicionar crédito!', 'error');
             return redirect()->route('transactions.credit');
@@ -89,8 +94,8 @@ class TransactionController extends Controller
             return redirect()->back()->withErrors($transaction->errors);
         }
 
-        toast('Item adicionado com sucesso!', 'success');
-        return redirect()->route('transactions.credit');
+        toast('Pagamento realizado com sucesso!', 'success');
+        return redirect()->route('reports.transaction', $transaction->data->id);
     }
 
     public function storeDebit(DebitRequest $request)
@@ -100,6 +105,11 @@ class TransactionController extends Controller
 
         if (!$transaction) {
             toast('Password inválida', 'error');
+            return redirect()->route('transactions.debit');
+        }
+
+        if (isset($transaction->message)) {
+            toast($transaction->message, 'error');
             return redirect()->route('transactions.debit');
         }
 
@@ -113,7 +123,7 @@ class TransactionController extends Controller
             return redirect()->back()->withErrors($transaction->errors);
         }
 
-        toast('Item adicionado com sucesso!', 'success');
-        return redirect()->route('transactions.debit');
+        toast('Pagamento realizado com sucesso!', 'success');
+        return redirect()->route('reports.transaction', $transaction->data->id);
     }
 }

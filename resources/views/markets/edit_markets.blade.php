@@ -22,7 +22,7 @@
                     <i class="flaticon-right-arrow"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Mercado</a>
+                    <a href="{{ route('markets.edit') }}">Mercado</a>
                 </li>
             </ul>
         </div>

@@ -2,7 +2,7 @@
     <table id="add-row" class="display table table-striped table-hover">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Identificador</th>
                 <th>Nome completo</th>
                 <th>Email</th>
                 <th>Telefone</th>
@@ -14,7 +14,7 @@
         </thead>
         <tfoot>
             <tr>
-                <th>ID</th>
+                <th>Identificador</th>
                 <th>Nome completo</th>
                 <th>Email</th>
                 <th>Telefone</th>
@@ -27,7 +27,7 @@
         <tbody>
             @foreach($workers->data as $data)
                 <tr>
-                    <td>{{ $data->id }}</td>
+                    <td>{{ $data->code_number }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->email }}</td>
                     <td>{{ $data->phone_mobile }}</td>

@@ -4,13 +4,14 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="{{session('user')->photo}}" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{ session('user')->photo }}" alt="..."
+                        class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            {{session('user')->name}}
-                            <span class="user-level">{{session('user')->roles[0]}}</span>
+                            {{ session('user')->name }}
+                            <span class="user-level">{{ session('user')->roles[0] }}</span>
                             <span class="caret"></span>
                         </span>
                     </a>
@@ -18,11 +19,6 @@
 
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
-                            <li>
-                                <a href="#profile">
-                                    <span class="link-collapse">Personificação</span>
-                                </a>
-                            </li>
                             <li>
                                 <a href="#settings">
                                     <span class="link-collapse">Sair</span>
