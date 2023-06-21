@@ -58,17 +58,34 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(string $id)
     {
         //
+        $data = $this->service->findById($id)->data;
+        return view('categories.edit_categories', compact('data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
         //
+        $dto = CategoryDTO::makeFromRequest($request);
+        $category = $this->service->update($id, $dto);
+
+        if ($category === null) {
+            toast('Falha ao editar dados da categoria!', 'error');
+            return redirect()->back();
+        }
+
+        if (isset($category->errors)) {
+            toast('Não foi possivel editar dados da categoria!', 'error');
+            return redirect()->back()->withErrors($category->errors);
+        }
+
+        toast('Item editado com sucesso!', 'success');
+        return redirect()->route('categories.edit', $category->data->id);
     }
 
     /**

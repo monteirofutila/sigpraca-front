@@ -97,6 +97,8 @@ class WorkerService
 
         if ($status === 200 || $status === 201) {
             return $data;
+        } else if ($status === 401) {
+            abort(401);
         } elseif ($status === 500) {
             abort(500);
         } elseif ($status === 404) {

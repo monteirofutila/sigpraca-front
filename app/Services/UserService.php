@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\Users\CreateUserDTO;
+use App\DTO\Users\UpdateUserDTO;
 use App\Repositories\UserRepository;
 
 
@@ -10,6 +11,25 @@ class UserService
 {
     public function __construct(protected UserRepository $repository)
     {
+    }
+
+    public function findById(string $id): ?object
+    {
+        $response = $this->repository->findById($id);
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200) {
+            return $data;
+        } else if ($status === 401) {
+            abort(401);
+        } else if ($status === 500) {
+            abort(500);
+        } else {
+            return null;
+        }
+
     }
 
     public function getAll(): ?object
@@ -43,6 +63,27 @@ class UserService
             abort(401);
         } else if ($status === 500) {
             abort(500);
+        } else {
+            return null;
+        }
+
+    }
+
+    public function update(string $id, UpdateUserDTO $dto): ?object
+    {
+        $response = $this->repository->update($id, $dto->toArray());
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200 || $status === 422 || $status === 201) {
+            return $data;
+        } else if ($status === 401) {
+            abort(401);
+        } elseif ($status === 500) {
+            abort(500);
+        } elseif ($status === 404) {
+            abort(404);
         } else {
             return null;
         }

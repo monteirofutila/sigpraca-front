@@ -34,6 +34,7 @@
                 @enderror
             </div>
         </div>
+        <div class="separator-solid"></div>
         <div class="form-group form-show-validation row">
             <label for="role" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Função <span
                     class="required-label">*</span></label>
@@ -51,6 +52,7 @@
                 </div>
             </div>
         </div>
+        <div class="separator-solid"></div>
         <div class="form-group form-show-validation row">
             <label for="password" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Password <span
                     class="required-label">*</span></label>

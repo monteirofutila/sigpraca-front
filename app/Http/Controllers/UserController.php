@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DTO\Users\CreateUserDTO;
+use App\DTO\Users\UpdateUserDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\RoleService;
@@ -61,17 +63,35 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(string $id)
     {
         //
+        $data = $this->service->findById($id)->data;
+        $roles = $this->roleService->getAll();
+        return view('users.edit_users', compact('roles', 'data'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, string $id)
     {
         //
+        $dto = UpdateUserDTO::makeFromRequest($request);
+        $user = $this->service->update($id, $dto);
+
+        if ($user === null) {
+            toast('Falha ao editar dados do usuário!', 'error');
+            return redirect()->back();
+        }
+
+        if (isset($user->errors)) {
+            toast('Não foi possivel editar dados do usuário!', 'error');
+            return redirect()->back()->withErrors($user->errors);
+        }
+
+        toast('Item editado com sucesso!', 'success');
+        return redirect()->route('users.edit', $user->data->id);
     }
 
     /**

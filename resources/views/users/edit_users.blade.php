@@ -32,7 +32,7 @@
                     <div class="card-header">
                         <div class="card-title">Editar item - Usuário</div>
                     </div>
-                    @include('workers.forms.form_edit_users')
+                    @include('users.forms.form_edit_users')
                 </div>
             </div>
         </div>

@@ -4,6 +4,17 @@
     @method('PUT')
     <div class="card-body">
         <div class="form-group form-show-validation row">
+            <label for="user_name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nome de usuário <span
+                    class="required-label">*</span></label>
+            <div class="col-lg-4 col-md-9 col-sm-8">
+                <input type="text" class="form-control" id="user_name" name="user_name" value="{{ $data->user_name }}"
+                    placeholder="Nome de usuário" required>
+                @error('user_name')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group form-show-validation row">
             <label for="name" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Nome completo <span
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
@@ -24,12 +35,49 @@
                 @enderror
             </div>
         </div>
+        <div class="separator-solid"></div>
         <div class="form-group form-show-validation row">
-            <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Telefone </label>
+            <label for="role" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Função <span
+                    class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="phone_mobile" name="phone_mobile"
-                    value="{{ $data->phone_mobile }}" placeholder="Telefone">
-                @error('phone_mobile')
+                <div class="select2-input">
+                    <select id="role" name="role" class="form-control" required>
+                        <option value=""></option>
+                        @foreach($roles->data as $value)
+                            @if($value->name == $data->roles[0])
+                                <option value="{{ $value->name }}" selected>
+                                    {{ $value->name }}</option>
+                            @else
+                                <option value="{{ $value->name }}">{{ $value->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('role')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+        </div>
+        <div class="separator-solid"></div>
+        <div class="form-group form-show-validation row">
+            <label for="password" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Password <span
+                    class="required-label">*</span></label>
+            <div class="col-lg-4 col-md-9 col-sm-8">
+                <input type="password" class="form-control" id="password" name="password"
+                    value="{{ old('password') }}" placeholder="Password">
+                @error('password')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group form-show-validation row">
+            <label for="confirmpassword" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Confirmar Password <span
+                    class="required-label">*</span></label>
+            <div class="col-lg-4 col-md-9 col-sm-8">
+                <input type="password" class="form-control" id="confirmpassword" name="password_confirmation"
+                    value="{{ old('password_confirmation') }}" placeholder="Confirmar Password">
+                @error('password_confirmation')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
@@ -75,37 +123,6 @@
                 <input type="text" class="form-control" id="bi" name="bi" value="{{ $data->bi }}"
                     placeholder="Bilhete de identidade">
                 @error('bi')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-        </div>
-        <div class="separator-solid"></div>
-        <div class="form-group form-show-validation row">
-            <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">País </label>
-            <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_country" value="{{ $data->address->address_country }}"
-                    name="address_country" placeholder="País">
-                @error('address_country')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group form-show-validation row">
-            <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Cidade </label>
-            <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_city" value="{{ $data->address->address_city }}"
-                    name="address_city" placeholder="Cidade">
-                @error('address_city')
-                    <small class="text-danger">{{ $message }}</small>
-                @enderror
-            </div>
-        </div>
-        <div class="form-group form-show-validation row">
-            <label for="email" class="col-lg-3 col-md-3 col-sm-4 mt-sm-2 text-right">Bairro </label>
-            <div class="col-lg-4 col-md-9 col-sm-8">
-                <input type="tel" class="form-control" id="address_street" value="{{ $data->address->address_street }}"
-                    name="address_street" placeholder="Bairro">
-                @error('address_street')
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
