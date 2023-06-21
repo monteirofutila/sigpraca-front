@@ -2,9 +2,9 @@
 
 namespace App\DTO\Workers;
 
-use App\Http\Requests\StoreWorkerRequest;
+use App\Http\Requests\WorkerRequest;
 
-class CreateWorkerDTO
+class WorkerDTO
 {
     public function __construct(
         public string $name,
@@ -30,7 +30,7 @@ class CreateWorkerDTO
         return array_combine($keys, $properties);
     }
 
-    public static function makeFromRequest(StoreWorkerRequest $request): self
+    public static function makeFromRequest(WorkerRequest $request): self
     {
         return new self(
             $request->name,

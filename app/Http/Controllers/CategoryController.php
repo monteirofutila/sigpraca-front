@@ -21,6 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->service->getAll();
+        confirmDelete();
         return view('categories.list_categories', compact('categories'));
     }
 
@@ -76,5 +77,12 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $data = $this->service->delete($id);
+        if ($data === null) {
+            toast('Falha ao excluir categoria!', 'error');
+            return redirect()->back();
+        }
+        toast('Item eliminado com sucesso!', 'success');
+        return redirect()->back();
     }
 }

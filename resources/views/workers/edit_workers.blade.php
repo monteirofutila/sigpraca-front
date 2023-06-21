@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Feirante - Novo item')
+@section('titulo', 'Feirante - Editar item')
 @section('content')
 <div class="container">
     <div class="page-inner">
@@ -30,9 +30,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Novo item - Feirante</div>
+                        <div class="card-title">Editar item - Feirante</div>
                     </div>
-                    @include('workers.forms.form_add_workers')
+                    @include('workers.forms.form_edit_workers')
                 </div>
             </div>
         </div>

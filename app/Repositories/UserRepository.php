@@ -63,7 +63,17 @@ class UserRepository implements UserRepositoryInterface
 
     public function update(string $id, array $data): array
     {
-        $response = $this->http->withToken(session('token'))->put(config('app.api.base_url') . "/users/$id", $data);
+        if (isset($data['photo'])) {
+            $this->http->attach(
+                'photo',
+                file_get_contents($data['photo']),
+                $data['photo']->getClientOriginalName()
+            );
+        } else {
+            unset($data['photo']);
+        }
+
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/users/$id", $data);
 
         $statusCode = $response->status();
         $responseData = $response->object();

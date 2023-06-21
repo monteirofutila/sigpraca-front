@@ -43,7 +43,7 @@
                         <div class="form-button-action">
                             <a href="{{ route('reports.transaction', $value->id) }}"
                                 data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"
-                                data-original-title="Imprimir factura">
+                                data-original-title="Imprimir comprovativo">
                                 <i class="fa fa-print"></i>
                             </a>
                         </div>

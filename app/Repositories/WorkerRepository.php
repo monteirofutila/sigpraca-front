@@ -63,7 +63,17 @@ class WorkerRepository implements WorkerRepositoryInterface
 
     public function update(string $id, array $data): array
     {
-        $response = $this->http->withToken(session('token'))->put(config('app.api.base_url') . "/users/$id", $data);
+        if (isset($data['photo'])) {
+            $this->http->attach(
+                'photo',
+                file_get_contents($data['photo']),
+                $data['photo']->getClientOriginalName()
+            );
+        } else {
+            unset($data['photo']);
+        }
+
+        $response = $this->http->withToken(session('token'))->post(config('app.api.base_url') . "/workers/$id", $data);
 
         $statusCode = $response->status();
         $responseData = $response->object();
@@ -76,7 +86,7 @@ class WorkerRepository implements WorkerRepositoryInterface
 
     public function delete(string $id): array
     {
-        $response = $this->http->withToken(session('token'))->delete(config('app.api.base_url') . "/users/$id");
+        $response = $this->http->withToken(session('token'))->delete(config('app.api.base_url') . "/workers/$id");
 
         $statusCode = $response->status();
         $responseData = $response->object();

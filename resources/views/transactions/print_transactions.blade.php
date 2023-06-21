@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Transações')
+@section('titulo', 'Comprovativo - Transações')
 @section('content')
 
 <div class="container">
@@ -9,7 +9,7 @@
             <h4 class="page-title">Transações</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
-                    <a href="#">
+                    <a href="{{ route('home') }}">
                         <i class="flaticon-home"></i>
                     </a>
                 </li>

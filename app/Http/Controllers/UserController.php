@@ -8,6 +8,7 @@ use App\Http\Requests\StoreUserRequest;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Services\RoleService;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -22,6 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->service->getAll();
+        confirmDelete();
         return view('users.list_users', compact('users'));
     }
 
@@ -78,5 +80,12 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+        $data = $this->service->delete($id);
+        if ($data === null) {
+            toast('Falha ao excluir usuário!', 'error');
+            return redirect()->back();
+        }
+        toast('Item eliminado com sucesso!', 'success');
+        return redirect()->back();
     }
 }

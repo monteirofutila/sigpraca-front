@@ -9,7 +9,7 @@
             <h4 class="page-title">Usuários</h4>
             <ul class="breadcrumbs">
                 <li class="nav-home">
-                    <a href="#">
+                    <a href="{{ route('home') }}">
                         <i class="flaticon-home"></i>
                     </a>
                 </li>
@@ -77,6 +77,5 @@
                 }
             });
         });
-
     </script>
 @endpush

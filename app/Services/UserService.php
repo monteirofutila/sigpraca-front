@@ -48,4 +48,23 @@ class UserService
         }
 
     }
+
+    public function delete(string $id): ?object
+    {
+        $response = $this->repository->delete($id);
+
+        $status = $response['status'];
+        $data = $response['data'];
+
+        if ($status === 200 || $status === 201) {
+            return $data;
+        } elseif ($status === 500) {
+            abort(500);
+        } elseif ($status === 404) {
+            abort(404);
+        } else {
+            return null;
+        }
+
+    }
 }

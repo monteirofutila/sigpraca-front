@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\DTO\Workers\CreateWorkerDTO;
+use App\DTO\Workers\WorkerDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
-use App\Http\Requests\StoreWorkerRequest;
+use App\Http\Requests\WorkerRequest;
 use App\Services\CategoryService;
 use App\Services\WorkerService;
-use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkerController extends Controller
 {
@@ -22,6 +22,7 @@ class WorkerController extends Controller
     public function index()
     {
         $workers = $this->service->getAll();
+        confirmDelete();
         return view('workers.list_workers', compact('workers'));
     }
 
@@ -37,10 +38,10 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkerRequest $request)
+    public function store(WorkerRequest $request)
     {
         //
-        $dto = CreateWorkerDTO::makeFromRequest($request);
+        $dto = WorkerDTO::makeFromRequest($request);
         $worker = $this->service->new($dto);
 
         if ($worker === null) {
@@ -61,17 +62,35 @@ class WorkerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function edit(string $id)
     {
         //
+        $data = $this->service->findById($id)->data;
+        $categories = $this->categoryService->getAll();
+        return view('workers.edit_workers', compact('data', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(WorkerRequest $request, string $id)
     {
         //
+        $dto = WorkerDTO::makeFromRequest($request);
+        $worker = $this->service->update($id, $dto);
+
+        if ($worker === null) {
+            toast('Falha ao editar dados do feirante!', 'error');
+            return redirect()->back();
+        }
+
+        if (isset($worker->errors)) {
+            toast('Não foi possivel editar dados do feirante!', 'error');
+            return redirect()->back()->withErrors($worker->errors);
+        }
+
+        toast('Item editado com sucesso!', 'success');
+        return redirect()->route('workers.edit', $worker->data->id);
     }
 
     /**
@@ -80,5 +99,12 @@ class WorkerController extends Controller
     public function destroy(string $id)
     {
         //
+        $data = $this->service->delete($id);
+        if ($data === null) {
+            toast('Falha ao excluir feirante!', 'error');
+            return redirect()->back();
+        }
+        toast('Item eliminado com sucesso!', 'success');
+        return redirect()->back();
     }
 }

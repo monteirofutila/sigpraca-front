@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <div class="input-file input-file-image">
                     <img class="img-upload-preview img-circle" width="100" height="100"
-                        src=" {{$data->photo ?? 'http://placehold.it/100x100'}}" alt="preview">
+                        src="{{$data->photo ?? 'http://placehold.it/100x100'}}" alt="preview">
                     <input type="file" class="form-control form-control-file" id="uploadImg" name="photo" value="{{old('photo')}}"
                         accept="image/*">
                     @error('photo')

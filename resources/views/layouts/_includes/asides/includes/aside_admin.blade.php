@@ -54,7 +54,7 @@
 </li>
 <li class="nav-item">
     <a data-toggle="collapse" href="#categories">
-        <i class="fas fa-user-tie"></i>
+        <i class="fas fa-layer-group"></i>
         <p>Categorias</p>
         <span class="caret"></span>
     </a>
