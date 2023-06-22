@@ -24,6 +24,7 @@ class DashboardController extends Controller
     {
         Carbon::setLocale('pt_BR');
         $data = Carbon::now();
+        dd($data);
         $stast = $this->service->stast();
         $calendar = $data->toFormattedDateString();
         $sale = $this->saleService->getSaleByPeriod(

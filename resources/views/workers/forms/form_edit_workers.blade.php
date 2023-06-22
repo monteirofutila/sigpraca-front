@@ -41,7 +41,7 @@
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8">
                 <div class="select2-input">
-                    <select id="category_id" name="category_id" class="form-control" required>
+                    <select id="category" name="category_id" class="form-control" required>
                         <option value=""></option>
                         @foreach($categories->data as $value)
                             @if($value->name == $category)
@@ -167,7 +167,7 @@
 @push('js')
     <script src="{{ asset('assets/js/plugin/select2/select2.full.min.js') }}"></script>
     <script>
-        $('#role').select2({
+        $('#category').select2({
             theme: "bootstrap"
         });
 
