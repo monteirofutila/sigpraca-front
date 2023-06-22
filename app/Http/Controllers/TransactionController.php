@@ -75,22 +75,22 @@ class TransactionController extends Controller
         $transaction = $this->transactionService->addCredit($dto);
 
         if (!$transaction) {
-            toast('Password inválida', 'error');
+            alert()->error('Password incorreta. Certifique-se de digitar corretamente.');
             return redirect()->route('transactions.credit');
         }
 
         if (isset($transaction->message)) {
-        toast($transaction->message, 'error');
-        return redirect()->route('transactions.credit');
+            alert()->error($transaction->message);
+            return redirect()->route('transactions.credit');
         }
 
         if ($transaction === null) {
-            toast('Falha ao adicionar crédito!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->route('transactions.credit');
         }
 
         if (isset($transaction->errors)) {
-            toast('Não foi possivel adicionar crédito ao vendedor!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($transaction->errors);
         }
 
@@ -104,22 +104,22 @@ class TransactionController extends Controller
         $transaction = $this->transactionService->addDebit($dto);
 
         if (!$transaction) {
-            toast('Password inválida', 'error');
+            alert()->error('Password incorreta. Certifique-se de digitar corretamente.');
             return redirect()->route('transactions.debit');
         }
 
         if (isset($transaction->message)) {
-            toast($transaction->message, 'error');
+            alert()->error($transaction->message);
             return redirect()->route('transactions.debit');
         }
 
         if ($transaction === null) {
-            toast('Falha ao adicionar crédito!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->route('transactions.debit');
         }
 
         if (isset($transaction->errors)) {
-            toast('Não foi possivel adicionar débito ao vendedor!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($transaction->errors);
         }
 

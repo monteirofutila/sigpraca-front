@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use App\DTO\Workers\WorkerDTO;
 use App\Http\Middleware\EnsureTokenIsValid;
 use App\Http\Requests\WorkerRequest;
+use App\Services\AccountService;
 use App\Services\CategoryService;
 use App\Services\WorkerService;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class WorkerController extends Controller
 {
-    public function __construct(protected WorkerService $service, protected CategoryService $categoryService)
-    {
+    public function __construct(
+        protected WorkerService $service,
+        protected AccountService $accountService,
+        protected CategoryService $categoryService
+    ) {
         $this->middleware(EnsureTokenIsValid::class);
     }
 
@@ -45,16 +48,16 @@ class WorkerController extends Controller
         $worker = $this->service->new($dto);
 
         if ($worker === null) {
-            toast('Falha ao cadastrar novo feirante!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($worker->errors)) {
-            toast('Não foi possivel adicionar o feirante!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($worker->errors);
         }
 
-        toast('Item criado com sucesso!', 'success');
+        toast('O item foi adicionado ao sistema com sucesso.', 'success');
         return redirect()->route('workers.create');
 
     }
@@ -65,9 +68,11 @@ class WorkerController extends Controller
     public function edit(string $id)
     {
         //
-        $data = $this->service->findById($id)->data;
-        $categories = $this->categoryService->getAll();
-        return view('workers.edit_workers', compact('data', 'categories'));
+        $account = $this->accountService->getAccountByWorker($id)->data;
+        $data = $account->worker; //dados do feirante
+        $category = $account->category->name; //categoria do feirante
+        $categories = $this->categoryService->getAll(); //lista de categorias
+        return view('workers.edit_workers', compact('data', 'categories', 'category'));
     }
 
     /**
@@ -80,16 +85,16 @@ class WorkerController extends Controller
         $worker = $this->service->update($id, $dto);
 
         if ($worker === null) {
-            toast('Falha ao editar dados do feirante!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($worker->errors)) {
-            toast('Não foi possivel editar dados do feirante!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($worker->errors);
         }
 
-        toast('Item editado com sucesso!', 'success');
+        toast('As alterações no item foram salvas com sucesso.', 'success');
         return redirect()->route('workers.edit', $worker->data->id);
     }
 
@@ -101,10 +106,10 @@ class WorkerController extends Controller
         //
         $data = $this->service->delete($id);
         if ($data === null) {
-            toast('Falha ao excluir feirante!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
-        toast('Item eliminado com sucesso!', 'success');
+        toast('O item selecionado foi removido com sucesso.', 'success');
         return redirect()->back();
     }
 }

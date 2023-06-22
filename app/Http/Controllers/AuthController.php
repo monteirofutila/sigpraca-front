@@ -8,7 +8,6 @@ use App\Http\Requests\LoginRequest;
 use App\Services\AuthService;
 use App\Services\MarketService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -29,7 +28,7 @@ class AuthController extends Controller
         $response = $this->service->login($dto);
 
         if (!$response) {
-            toast('Nome de usuário ou palavra-passe errado(a)', 'error');
+            toast('As informações de login são inválidas. Por favor, verifique seu nome de usuário e Password.', 'error');
             return redirect()->back();
         }
 
@@ -49,7 +48,7 @@ class AuthController extends Controller
         $response = $this->service->logout();
 
         if (!$response) {
-            toast('Erro ao sair do sistema!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 

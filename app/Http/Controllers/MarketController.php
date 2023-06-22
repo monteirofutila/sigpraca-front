@@ -27,16 +27,16 @@ class MarketController extends Controller
         $market = $this->service->update($dto);
 
         if ($market === null) {
-            toast('Falha ao actualizado dados!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($market->errors)) {
-            toast('Não foi possivel adicionar o vendedor!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($market->errors);
         }
 
-        toast('Item actualizado com sucesso!', 'success');
+        toast('As alterações no item foram salvas com sucesso.', 'success');
         return redirect()->route('markets.edit');
     }
 

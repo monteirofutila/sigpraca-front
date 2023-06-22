@@ -42,16 +42,16 @@ class CategoryController extends Controller
         $category = $this->service->new($dto);
 
         if ($category === null) {
-            toast('Falha ao cadastrar nova categoria!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($category->errors)) {
-            toast('Não foi possivel adicionar a categoria!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($category->errors);
         }
 
-        toast('Item criado com sucesso!', 'success');
+        toast('O item foi adicionado ao sistema com sucesso.', 'success');
         return redirect()->route('categories.create');
     }
 
@@ -75,16 +75,16 @@ class CategoryController extends Controller
         $category = $this->service->update($id, $dto);
 
         if ($category === null) {
-            toast('Falha ao editar dados da categoria!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($category->errors)) {
-            toast('Não foi possivel editar dados da categoria!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($category->errors);
         }
 
-        toast('Item editado com sucesso!', 'success');
+        toast('As alterações no item foram salvas com sucesso.', 'success');
         return redirect()->route('categories.edit', $category->data->id);
     }
 
@@ -96,10 +96,10 @@ class CategoryController extends Controller
         //
         $data = $this->service->delete($id);
         if ($data === null) {
-            toast('Falha ao excluir categoria!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
-        toast('Item eliminado com sucesso!', 'success');
+        toast('O item selecionado foi removido com sucesso.', 'success');
         return redirect()->back();
     }
 }

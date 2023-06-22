@@ -44,7 +44,13 @@
                     <select id="category_id" name="category_id" class="form-control" required>
                         <option value=""></option>
                         @foreach($categories->data as $value)
-                            <option value="{{ $value->id }}">{{ $value->name }}</option>
+                            @if($value->name == $category)
+                                <option value="{{ $value->id }}" selected>
+                                   {{ $value->name }}</option>
+                            @else
+                                <option value="{{ $value->id }}">{{ $value->name }}
+                               </option>
+                            @endif
                         @endforeach
                     </select>
                     @error('category_id')
@@ -59,11 +65,11 @@
                     class="required-label">*</span></label>
             <div class="col-lg-4 col-md-9 col-sm-8 d-flex align-items-center">
                 <div class="custom-control custom-radio">
-                    <input type="radio" value="M" id="male" name="gender" class="custom-control-input" checked>
+                    <input type="radio" value="M" id="male" name="gender" class="custom-control-input" @if($data->gender == 'M') checked @endif>
                     <label class="custom-control-label" for="male">Masculino</label>
                 </div>
                 <div class="custom-control custom-radio">
-                    <input type="radio" value="F" id="female" name="gender" class="custom-control-input">
+                    <input type="radio" value="F" id="female" name="gender" class="custom-control-input" @if($data->gender == 'F') checked @endif>
                     <label class="custom-control-label" for="female">Feminino</label>
                 </div>
                 @error('gender')

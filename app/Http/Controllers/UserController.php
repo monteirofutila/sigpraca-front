@@ -47,16 +47,16 @@ class UserController extends Controller
         $user = $this->service->new($dto);
 
         if ($user === null) {
-            toast('Falha ao cadastrar novo usuário!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($user->errors)) {
-            toast('Não foi possivel adicionar o usuário!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($user->errors);
         }
 
-        toast('Item criado com sucesso!', 'success');
+        toast('O item foi adicionado ao sistema com sucesso.', 'success');
         return redirect()->route('users.create');
     }
 
@@ -81,16 +81,16 @@ class UserController extends Controller
         $user = $this->service->update($id, $dto);
 
         if ($user === null) {
-            toast('Falha ao editar dados do usuário!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
 
         if (isset($user->errors)) {
-            toast('Não foi possivel editar dados do usuário!', 'error');
+            toast('Por favor, verifique as informações fornecidas!', 'error');
             return redirect()->back()->withErrors($user->errors);
         }
 
-        toast('Item editado com sucesso!', 'success');
+        toast('As alterações no item foram salvas com sucesso.', 'success');
         return redirect()->route('users.edit', $user->data->id);
     }
 
@@ -102,10 +102,10 @@ class UserController extends Controller
         //
         $data = $this->service->delete($id);
         if ($data === null) {
-            toast('Falha ao excluir usuário!', 'error');
+            alert()->error('Desculpe, ocorreu um erro. Por favor, tente novamente.');
             return redirect()->back();
         }
-        toast('Item eliminado com sucesso!', 'success');
+        toast('O item selecionado foi removido com sucesso.', 'success');
         return redirect()->back();
     }
 }
