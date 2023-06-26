@@ -28,9 +28,9 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('update-post', function ($user) {
+        /* Gate::define('update-post', function ($user) {
             return true;
-        });
+        }); */
 
     }
 }
