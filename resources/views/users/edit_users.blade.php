@@ -1,4 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.template', [
+      'activePage' => 'users',
+])
 
 @section('titulo', 'Usuário - Editar item')
 @section('content')

@@ -36,6 +36,11 @@
                     <td>{{ $data->bi }}</td>
                     <td>
                         <div class="form-button-action">
+                            <a href="{{ route('accounts.show', $data->id) }}"
+                                data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"
+                                data-original-title="Detalhes da conta">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a href="{{ route('workers.edit', $data->id) }}"
                                 data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg"
                                 data-original-title="Editar item">

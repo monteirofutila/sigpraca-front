@@ -1,4 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.template', [
+    'activePage' => 'home',
+])
 
 @section('titulo', 'Dashboard')
 @section('content')
@@ -26,7 +28,7 @@
     </div>
     <div class="page-inner mt--5">
         <div class="row mt--2">
-            <div class="col-md-7">
+            <div class="col-md-8">
                 <div class="card full-height">
                     <div class="card-body">
                         <div class="card-title">Estatísticas gerais</div>
@@ -56,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="card card-warning full-height">
                     <div class="card-header">
                         <div class="card-title">Receita diária</div>
@@ -220,54 +222,6 @@
             styleWrapper: true,
             styleText: true
         })
-
-        var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-        var mytotalIncomeChart = new Chart(totalIncomeChart, {
-            type: 'bar',
-            data: {
-                labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-                datasets: [{
-                    label: "Total Income",
-                    backgroundColor: '#ff9e27',
-                    borderColor: 'rgb(23, 125, 255)',
-                    data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-                }],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    display: false,
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            display: false //this will remove only the label
-                        },
-                        gridLines: {
-                            drawBorder: false,
-                            display: false
-                        }
-                    }],
-                    xAxes: [{
-                        gridLines: {
-                            drawBorder: false,
-                            display: false
-                        }
-                    }]
-                },
-            }
-        });
-
-        $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
-            type: 'line',
-            height: '70',
-            width: '100%',
-            lineWidth: '2',
-            lineColor: '#ffa534',
-            fillColor: 'rgba(255, 165, 52, .14)'
-        });
 
     </script>
     <!-- Chart JS -->

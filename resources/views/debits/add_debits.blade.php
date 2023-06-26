@@ -1,4 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.template', [
+      'activePage' => 'transactions',
+])
 
 @section('titulo', 'Debitar saldo')
 @section('content')

@@ -1,4 +1,4 @@
-<li class="nav-item active">
+<li class="nav-item @if ($activePage == 'home') active @endif">
     <a href="{{ route('home') }}">
         <i class="fas fa-home"></i>
         <p>Home</p>
@@ -34,13 +34,13 @@
     </span>
     <h4 class="text-section">Finanças</h4>
 </li>
-<!-- <li class="nav-item">
-    <a href="starter-template.html">
+<li class="nav-item @if ($activePage == 'accounts') active @endif">
+    <a href="{{ route('accounts.index') }}">
         <i class="fas fa-wallet"></i>
         <p>Contas</p>
     </a>
-</li> -->
-<li class="nav-item">
+</li>
+<li class="nav-item @if ($activePage == 'transactions') active @endif">
     <a href="{{ route('transactions.index') }}">
         <i class="fas fa-money-bill-alt"></i>
         <p>Transações</p>
@@ -52,7 +52,7 @@
     </span>
     <h4 class="text-section">Administração</h4>
 </li>
-<li class="nav-item">
+<li class="nav-item @if ($activePage == 'categories') active @endif">
     <a data-toggle="collapse" href="#categories">
         <i class="fas fa-layer-group"></i>
         <p>Categorias</p>
@@ -73,7 +73,7 @@
         </ul>
     </div>
 </li>
-<li class="nav-item">
+<li class="nav-item @if ($activePage == 'workers') active @endif">
     <a data-toggle="collapse" href="#workers">
         <i class="fas fa-user-tie"></i>
         <p>Feirantes</p>
@@ -94,13 +94,13 @@
         </ul>
     </div>
 </li>
-<li class="nav-item">
+<li class="nav-item @if ($activePage == 'markets') active @endif">
     <a href="{{ route('markets.edit') }}">
         <i class="fas fa-cogs"></i>
         <p>Mercado</p>
     </a>
 </li>
-<li class="nav-item">
+<li class="nav-item @if ($activePage == 'users') active @endif">
     <a data-toggle="collapse" href="#users">
         <i class="fas fa-user-friends"></i>
         <p>Usuários</p>

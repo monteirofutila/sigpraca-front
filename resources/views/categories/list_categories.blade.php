@@ -1,4 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.template', [
+      'activePage' => 'categories',
+])
 
 @section('titulo', 'Categorias')
 @section('content')

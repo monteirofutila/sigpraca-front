@@ -16,7 +16,7 @@ class AccountService
         $status = $response['status'];
         $data = $response['data'];
 
-        if ($status === 200) {
+        if ($status === 200 || $status === 404) {
             return $data;
         } else if ($status === 401) {
             abort(401);

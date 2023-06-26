@@ -1,4 +1,6 @@
-@extends('layouts.template')
+@extends('layouts.template', [
+      'activePage' => 'markets',
+])
 
 @section('titulo', 'Informações do mercado')
 @section('content')
