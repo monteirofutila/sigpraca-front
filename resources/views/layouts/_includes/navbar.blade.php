@@ -8,7 +8,7 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{ session('user')->photo }}" alt="..."
+                        <img src="{{ session('user')->photo ?? 'http://placehold.it/100x100' }}" alt="..."
                             class="avatar-img rounded-circle">
                     </div>
                 </a>
@@ -16,7 +16,7 @@
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-lg"><img src="{{ session('user')->photo }}"
+                                <div class="avatar-lg"><img src="{{ session('user')->photo ?? 'http://placehold.it/100x100' }}"
                                         alt="image profile" class="avatar-img rounded"></div>
                                 <div class="u-text">
                                     <h4>{{ session('user')->name }}</h4>

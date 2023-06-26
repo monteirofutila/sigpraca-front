@@ -4,7 +4,7 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="{{ session('user')->photo }}" alt="..."
+                    <img src="{{ session('user')->photo ?? 'http://placehold.it/100x100' }}" alt="..."
                         class="avatar-img rounded-circle">
                 </div>
                 <div class="info">
@@ -20,7 +20,7 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#settings">
+                                <a href="{{ route('logout') }}">
                                     <span class="link-collapse">Sair</span>
                                 </a>
                             </li>

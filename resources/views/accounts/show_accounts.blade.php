@@ -192,7 +192,7 @@
                     <div class="card-header" style="background-image: url('../../assets/img/blogpost.jpg');">
                         <div class="profile-picture">
                             <div class="avatar avatar-xl">
-                                <img src="{{ $worker->photo }}" alt="..." class="avatar-img rounded-circle">
+                                <img src="{{ $worker->photo ?? 'http://placehold.it/100x100'}}" alt="..." class="avatar-img rounded-circle">
                             </div>
                         </div>
                     </div>
