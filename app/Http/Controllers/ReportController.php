@@ -13,13 +13,12 @@ class ReportController extends Controller
     public function __construct(
         protected TransactionService $transactionService,
     ) {
-        $this->middleware(EnsureTokenIsValid::class);
+        //$this->middleware(EnsureTokenIsValid::class);
     }
 
     public function transactionPrint(string $transactionID)
     {
         $data = $this->transactionService->findByID($transactionID)->data;
-
         $pdf = PDF::setOption([
             'isHtml5ParserEnabled' => true,
             'isRemoteEnabled' => true,
