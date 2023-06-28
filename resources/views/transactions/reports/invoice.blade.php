@@ -53,8 +53,9 @@
         </tr>
     </table>
     <br>
-    <p>Observações: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
+    <div class="qrcode">
+        <img width="75" height="75" src="{{ 'https://qr.eletto.dev/'.route('reports.transaction', $data->id)}}" /> 
+    </div>
 </body>
 
 </html>
